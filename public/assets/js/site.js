@@ -1,14 +1,12 @@
 // Viso ekrano meniu: klaviatūra, Escape ir fokusavimo valdymas.
 const b=document.querySelector('.site-header .menu');
 const n=document.getElementById('navigation');
-const navLabel=b.querySelector('.menu-label');
 function setMenuOpen(open,restoreFocus=false){
   n.classList.toggle('open',open);
   n.inert=!open;
   document.body.classList.toggle('navigation-open',open);
   b.setAttribute('aria-expanded',String(open));
   b.setAttribute('aria-label',open?'Uždaryti meniu':'Atverti meniu');
-  navLabel.textContent=open?'UŽDARYTI':'MENIU';
   if(open){
     const first=n.querySelector('.nav-panel-links a');
     if(first)first.focus({preventScroll:true});
