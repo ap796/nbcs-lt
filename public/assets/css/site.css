@@ -38,7 +38,7 @@ body{background:#06111c;color:#eef4f8}.page-film{position:fixed;inset:0;z-index:
   .services .service{transition:none}
 }
 
-/* Hero patobulinimai: tikras NBCS logotipas, auksinis skirtukas, slinkties nuoroda. */
+/* Hero patobulinimai: tikras NBCS logotipas ir auksinis skirtukas. */
 .hero-stage{position:relative}
 .hero-stage #hero-title.hero-wordmark{
   margin:0 0 22px;
@@ -63,37 +63,11 @@ body{background:#06111c;color:#eef4f8}.page-film{position:fixed;inset:0;z-index:
   background:linear-gradient(90deg,transparent,rgba(214,195,159,.95),transparent);
   transform:translateZ(58px);
 }
-.hero-more{
-  position:absolute;
-  left:50%;
-  bottom:22px;
-  z-index:2;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  white-space:nowrap;
-  color:#bdcad5;
-  font-size:11px;
-  letter-spacing:1.8px;
-  text-transform:uppercase;
-  text-decoration:none;
-  opacity:.88;
-  transform:translateX(-50%);
-  transition:color .25s ease,opacity .25s ease;
-}
-.hero-more:hover{color:#fff;opacity:1}
-.hero-more:focus-visible{outline:2px solid #d6c39f;outline-offset:6px}
 @media(max-width:800px){
   .hero-wordmark img{width:min(300px,74vw)}
   .hero-micro-divider{width:58px;margin-top:22px}
-  .hero-more{bottom:18px;font-size:10px;letter-spacing:1.5px}
 }
 @media(max-width:480px){
   .hero-wordmark img{width:min(250px,72vw)}
   .hero-micro-divider{width:52px;margin-top:20px}
-  .hero-more{bottom:16px;font-size:10px;letter-spacing:1.3px}
-}
-@media(prefers-reduced-motion:reduce){
-  .hero-more{transition:none}
 }
