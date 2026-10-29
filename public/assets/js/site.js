@@ -2,7 +2,9 @@ const b=document.querySelector('.menu'),n=document.querySelector('nav');b.addEve
 const video=document.getElementById('background-video');
 const videoToggle=document.getElementById('video-toggle');
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
-let shouldPlay=!reducedMotion.matches;
+// Fonas paleidžiamas automatiškai; reduced-motion tebenaudojamas 3D judesiui.
+// Paleidimą gali riboti pačios naršyklės ar telefono energijos taupymo politika.
+let shouldPlay=true;
 // Autoplay leidžiamas mobiliosiose naršyklėse tik tyliai ir pačiame puslapyje.
 video.muted=true;
 video.defaultMuted=true;
@@ -34,14 +36,16 @@ video.querySelector('source').addEventListener('error',()=>document.body.classLi
 video.addEventListener('canplay',()=>{if(shouldPlay&&video.paused)playBackground();},{once:true});
 window.addEventListener('pageshow',()=>{if(shouldPlay&&video.paused)playBackground();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)video.pause();else if(shouldPlay)playBackground();});
-reducedMotion.addEventListener('change',event=>{
- shouldPlay=!event.matches;
- video.autoplay=shouldPlay;
- if(shouldPlay)playBackground();
- else video.pause();
-});
-if(shouldPlay)playBackground();
-else{video.autoplay=false;video.pause();syncVideoControl();}
+// Jei naršyklė atmetė automatinį paleidimą, pirma sąveika bet kur puslapyje
+// suteikia dar vieną galimybę paleisti foną neieškant atskiro video mygtuko.
+function retryBackgroundOnInteraction(){
+ if(shouldPlay&&video.paused&&!document.hidden)playBackground();
+}
+document.addEventListener('touchstart',retryBackgroundOnInteraction,{passive:true,once:true});
+document.addEventListener('pointerdown',retryBackgroundOnInteraction,{passive:true,once:true});
+document.addEventListener('keydown',retryBackgroundOnInteraction,{once:true});
+video.autoplay=true;
+playBackground();
 
 // Small, eased perspective shifts; static on touch and reduced-motion devices.
 const heroStage=document.querySelector('.hero-stage');
