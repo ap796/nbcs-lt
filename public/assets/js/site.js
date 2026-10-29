@@ -135,7 +135,7 @@ const companyDetails=document.querySelector('.company-details');
 function companyText(){
   const lines=[companyDetails.querySelector('.company-name').textContent.trim()];
   companyDetails.querySelectorAll('.company-codes>div').forEach(row=>{
-    lines.push(row.querySelector('dt').textContent.trim()+': '+row.querySelector('dd').textContent.trim());
+    lines.push(row.querySelector('dt').textContent.trim()+': '+row.querySelector('.company-code-value').textContent.trim());
   });
   companyDetails.querySelectorAll('.bank-accounts>div').forEach(row=>{
     lines.push(row.querySelector('dt').textContent.trim()+'; Nr: '+row.querySelector('.bank-account-value').textContent.trim());
@@ -177,15 +177,17 @@ copyCompany.addEventListener('click',async()=>{
     window.setTimeout(()=>{copyCompany.innerHTML=originalHTML;},2200);
   }
 });
-document.querySelectorAll('.copy-account').forEach(button=>{
+document.querySelectorAll('.copy-code').forEach(button=>{
   button.addEventListener('click',async()=>{
     if(button.disabled)return;
     button.disabled=true;
     copyStatus.textContent='';
-    const value=button.closest('dd').querySelector('.bank-account-value').textContent.trim().replace(/\s+/g,'');
+    const row=button.closest('.company-codes > div');
+    const value=row.querySelector('.company-code-value').textContent.trim();
+    const label=row.querySelector('dt').textContent.trim();
     const copied=await copyContactText(value);
     button.disabled=false;
-    copyFeedback(copied,'Banko sąskaitos numeris nukopijuotas.');
+    copyFeedback(copied,label+' nukopijuotas.');
     if(copied){
       button.classList.add('is-copied');
       window.setTimeout(()=>button.classList.remove('is-copied'),1800);
