@@ -52,11 +52,11 @@ Based on the latest published source commit `958c3d2578482ec2fc563e5fda3557d132e
 
 Sites-specific hosting identifiers, Git history, credentials, temporary downloads and unrelated source uploads are intentionally excluded. The exported website has no dependency on ChatGPT Sites. This package does not create a GitHub repository, deploy anything, change DNS or transfer the nbcs.lt domain.
 
-## External services and one known legacy link
+## External services and privacy policy
 
 Google Maps remains an online third-party embed. Directions, `https://pagalba.nbcs.lt`, email and telephone links still open their corresponding external services. The rest of the site's visual assets are local.
 
-The supplied privacy-policy text links to `https://nbcs.lt/wp-content/uploads/2021/09/slap.png`. That legacy cookie-information image returned HTTP 404 during packaging, so it could not be included. Its original link and policy text are preserved. Replace that link with a recovered local image or updated policy material before going live; do not expect switching DNS to restore that WordPress file. The policy's supplied last-updated date (2021-09-13) is unchanged.
+The outdated cookie-information image link (`https://nbcs.lt/wp-content/uploads/2021/09/slap.png`) returned HTTP 404 and has been removed from the privacy-policy page. The page still contains its existing cookie descriptions. The policy's supplied last-updated date (2021-09-13) remains unchanged; review the policy for accuracy and compliance before going live.
 
 The copy button uses the Clipboard API over HTTPS with an existing manual-copy fallback. Autoplay depends on browser settings; the poster is included as fallback. This is a static presentation site, not an implementation of the external Service Desk.
 
