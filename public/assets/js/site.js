@@ -120,16 +120,64 @@ projectDetails.forEach(item=>item.addEventListener('toggle',syncProjectExpand));
 const copyCompany=document.querySelector('.copy-company');
 const copyStatus=document.querySelector('.copy-status');
 const copyManual=document.querySelector('.copy-manual');
-function companyText(){const company=document.querySelector('.company-details');const lines=[company.querySelector('.company-name').textContent.trim()];company.querySelectorAll('.company-codes>div').forEach(row=>lines.push(row.querySelector('dt').textContent.trim()+': '+row.querySelector('dd').textContent.trim()));company.querySelectorAll('.bank-accounts>div').forEach(row=>lines.push(row.querySelector('dt').textContent.trim()+'; Nr: '+row.querySelector('dd').textContent.trim()));return lines.join('\n');}
+const companyDetails=document.querySelector('.company-details');
+function companyText(){
+  const lines=[companyDetails.querySelector('.company-name').textContent.trim()];
+  companyDetails.querySelectorAll('.company-codes>div').forEach(row=>{
+    lines.push(row.querySelector('dt').textContent.trim()+': '+row.querySelector('dd').textContent.trim());
+  });
+  companyDetails.querySelectorAll('.bank-accounts>div').forEach(row=>{
+    lines.push(row.querySelector('dt').textContent.trim()+'; Nr: '+row.querySelector('.bank-account-value').textContent.trim());
+  });
+  return lines.join('\n');
+}
+async function copyContactText(text){
+  copyManual.hidden=true;
+  try{
+    if(navigator.clipboard?.writeText){
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  }catch(error){/* Leidimai ar naršyklės politika gali riboti kopijavimą. */}
+  copyManual.value=text;
+  copyManual.hidden=false;
+  copyManual.focus({preventScroll:true});
+  copyManual.select();
+  copyManual.setSelectionRange(0,text.length);
+  try{
+    const success=document.execCommand('copy');
+    if(success)copyManual.hidden=true;
+    return success;
+  }catch(error){return false;}
+}
+function copyFeedback(success,message){
+  copyStatus.textContent=success?message:'Automatiškai nukopijuoti nepavyko. Pažymėtas tekstas paruoštas kopijavimui (Ctrl+C arba ⌘C).';
+}
 copyCompany.addEventListener('click',async()=>{
- copyCompany.disabled=true;copyStatus.textContent='';copyManual.hidden=true;
- const text=companyText();let copied=false;
- try{if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(text);copied=true;}}catch(error){}
- if(!copied){
-  copyManual.value=text;copyManual.hidden=false;copyManual.focus();copyManual.select();copyManual.setSelectionRange(0,text.length);
-  try{copied=document.execCommand('copy');}catch(error){}
- }
- copyCompany.disabled=false;
- if(copied){copyManual.hidden=true;copyStatus.textContent='Visi rekvizitai nukopijuoti.';copyCompany.innerHTML='Nukopijuota <span aria-hidden="true">✓</span>';copyCompany.focus({preventScroll:true});}
- else{copyStatus.textContent='Automatiškai nukopijuoti nepavyko. Nukopijuokite pažymėtą tekstą (Ctrl+C arba ⌘C).';copyManual.focus();copyManual.select();}
+  if(copyCompany.disabled)return;
+  copyCompany.disabled=true;
+  copyStatus.textContent='';
+  const originalHTML=copyCompany.innerHTML;
+  const copied=await copyContactText(companyText());
+  copyCompany.disabled=false;
+  copyFeedback(copied,'Visi rekvizitai nukopijuoti.');
+  if(copied){
+    copyCompany.innerHTML='Nukopijuota <span aria-hidden="true">✓</span>';
+    window.setTimeout(()=>{copyCompany.innerHTML=originalHTML;},2200);
+  }
+});
+document.querySelectorAll('.copy-account').forEach(button=>{
+  button.addEventListener('click',async()=>{
+    if(button.disabled)return;
+    button.disabled=true;
+    copyStatus.textContent='';
+    const value=button.closest('dd').querySelector('.bank-account-value').textContent.trim().replace(/\s+/g,'');
+    const copied=await copyContactText(value);
+    button.disabled=false;
+    copyFeedback(copied,'Banko sąskaitos numeris nukopijuotas.');
+    if(copied){
+      button.classList.add('is-copied');
+      window.setTimeout(()=>button.classList.remove('is-copied'),1800);
+    }
+  });
 });
