@@ -857,3 +857,187 @@ header.site-header.is-scrolled::before{opacity:1}
   .nbcs-hero-phrase{color:CanvasText}
   .nbcs-hero-cta{background:ButtonFace;color:ButtonText;border-color:ButtonText}
 }
+
+/* NBCS — galutinis vizualinis suvienodinimas. Tik esamų skilčių selektoriai. */
+:root{
+  --nbcs-polish-line:rgba(170,201,219,.20);
+  --nbcs-polish-text:#bed0dc;
+}
+
+/* Tolygus sekcijų ritmas, neliečiant pilno aukščio hero ir kontaktų išdėstymo. */
+.section:not(.contact){
+  padding-top:clamp(78px,7vw,108px);
+  padding-bottom:clamp(78px,7vw,108px);
+}
+.heading{
+  gap:clamp(26px,4vw,60px);
+  margin-bottom:clamp(32px,3.4vw,44px);
+}
+.heading h2,
+.partners-heading h2,
+.about-inner h2{
+  font-family:"Manrope","Helvetica Neue",Arial,sans-serif;
+  font-weight:400;
+  line-height:1.16;
+  letter-spacing:-.039em;
+}
+.heading > p{
+  max-width:390px;
+  margin:0;
+  color:var(--nbcs-polish-text);
+  font-size:14px;
+  line-height:1.72;
+}
+.partners-heading{margin-bottom:38px}
+.partners-heading p{
+  max-width:390px;
+  color:var(--nbcs-polish-text);
+  line-height:1.72;
+}
+
+/* Paslaugos: rami tipografinė hierarchija, nesikeičiant tinkleliui. */
+.services .service{
+  padding:clamp(27px,2.6vw,35px);
+  border-color:var(--nbcs-polish-line);
+}
+.services .service h3{
+  margin:27px 0 13px;
+  color:#edf3f6;
+  font-family:"Manrope","Helvetica Neue",Arial,sans-serif;
+  font-weight:400;
+  line-height:1.33;
+  letter-spacing:-.028em;
+}
+.services .service-description{
+  max-width:370px;
+  color:#bfd0dc;
+  line-height:1.72;
+}
+.services .service:hover{background-color:rgba(22,53,68,.48)}
+
+/* Kokybė: subtilus paviršius be nebūtino kortelių šokinėjimo. */
+.quality-grid{gap:16px}
+.quality-card{
+  padding:clamp(23px,2.35vw,30px);
+  border-color:var(--nbcs-polish-line);
+  background:rgba(7,26,40,.7);
+  transition:border-color .25s ease,background-color .25s ease;
+}
+.quality-card:hover{
+  background:rgba(13,39,54,.84);
+  border-color:rgba(155,204,70,.34);
+  transform:none;
+}
+.quality-card h3{
+  font-family:"Manrope","Helvetica Neue",Arial,sans-serif;
+  font-size:clamp(21px,2vw,25px);
+  font-weight:400;
+  line-height:1.28;
+  letter-spacing:-.035em;
+  white-space:normal;
+}
+.quality-card p{color:var(--nbcs-polish-text);line-height:1.66}
+
+/* Partneriai: mažesnis triukšmas, bet paliekama originali logotipų spalva. */
+.partner-featured{border-color:rgba(155,204,70,.3)}
+.partner-list{border-color:var(--nbcs-polish-line);background:var(--nbcs-polish-line)}
+.partner-list li{background:#0b1d2b}
+.partner-list .partner-logo{opacity:.94}
+.partner-award{margin-top:26px}
+.partner-award p{max-width:650px;line-height:1.72}
+
+/* Projektai: aiškesnis sąrašas ir lengviau skaitomi ilgi aprašymai. */
+.projects-toolbar{margin-bottom:19px}
+.project-list{border-top-color:var(--nbcs-polish-line)}
+.project-detail{border-bottom-color:var(--nbcs-polish-line)}
+.project-detail[open]{
+  background:rgba(12,36,53,.88);
+  box-shadow:inset 2px 0 rgba(155,204,70,.63);
+}
+.project-detail summary{
+  gap:24px;
+  padding:26px 28px;
+  transition:background-color .22s ease;
+}
+.project-detail summary:hover{background:rgba(163,200,225,.055)}
+.project-detail h3{
+  font-family:"Manrope","Helvetica Neue",Arial,sans-serif;
+  font-size:clamp(17px,1.55vw,22px);
+  line-height:1.4;
+  font-weight:400;
+  letter-spacing:-.022em;
+}
+.project-body{padding:0 78px 32px}
+.project-body-label{margin:4px 0 16px}
+.project-body ul{max-width:880px}
+.project-body li{
+  margin-bottom:12px;
+  color:#c1d1dc;
+  font-size:14px;
+  line-height:1.7;
+}
+
+/* Tikslios interaktyvių elementų būsenos, nekeičiant NBCS spalvų. */
+.nbcs-hero-cta,
+.contact .copy-company,
+.contact .copy-account,
+.contact .location-route,
+.projects-expand{
+  -webkit-tap-highlight-color:transparent;
+}
+.nbcs-hero-cta:hover,
+.contact .copy-company:hover,
+.contact .location-route:hover{transform:translateY(-1px)}
+.nbcs-hero-cta{
+  transition:background-color .25s ease,border-color .25s ease,color .25s ease,transform .25s ease;
+}
+.contact .copy-company,
+.contact .location-route{
+  transition:background-color .22s ease,border-color .22s ease,color .22s ease,transform .22s ease;
+}
+.projects-expand{transition:color .22s ease}
+.project-detail summary:focus-visible,
+.projects-expand:focus-visible{
+  outline:2px solid #9bcc46;
+  outline-offset:3px;
+}
+
+/* Prisitaikymas neaukojant tekstų ir navigacijos mobiliajame ekrane. */
+@media(max-width:800px){
+  .section:not(.contact){padding-top:68px;padding-bottom:68px}
+  .heading{margin-bottom:29px}
+  .heading > p{max-width:520px;margin-top:16px}
+  .partners-heading{margin-bottom:29px}
+  .services .service{padding:28px}
+  .quality-card{padding:25px}
+  .project-detail summary{gap:18px;padding:24px 23px}
+  .project-body{padding:0 58px 29px}
+}
+@media(max-width:600px){
+  .section:not(.contact){padding-top:57px;padding-bottom:57px}
+  .heading{margin-bottom:25px}
+  .heading > p{margin-top:14px;font-size:13px}
+  .partners-heading{gap:15px;margin-bottom:26px}
+  .partners-heading p{font-size:13px}
+  .services .service{padding:26px 24px}
+  .services .service h3{margin-top:24px}
+  .quality-grid{gap:12px}
+  .quality-card{padding:24px}
+  .partner-award{margin-top:21px}
+  .project-detail summary{gap:13px;padding:21px 16px}
+  .project-body{padding:0 22px 25px 47px}
+  .project-body-label{margin-bottom:13px}
+  .project-body li{font-size:14px;line-height:1.68;margin-bottom:11px}
+  .about .big-year{margin-top:30px;font-size:clamp(57px,14vw,75px);letter-spacing:-.055em}
+}
+@media(max-width:380px){
+  .projects-toolbar{flex-wrap:wrap;gap:2px 14px}
+  .projects-toolbar>span{max-width:none}
+  .projects-expand{padding-left:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .quality-card,.project-detail summary,.projects-expand,
+  .nbcs-hero-cta,.contact .copy-company,.contact .location-route{transition:none}
+  .nbcs-hero-cta:hover,.contact .copy-company:hover,
+  .contact .location-route:hover{transform:none}
+}
