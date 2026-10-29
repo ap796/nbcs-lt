@@ -38,7 +38,7 @@ body{background:#06111c;color:#eef4f8}.page-film{position:fixed;inset:0;z-index:
   .services .service{transition:none}
 }
 
-/* Hero patobulinimai: tikras NBCS logotipas ir auksinis skirtukas. */
+/* Hero patobulinimai: tikras NBCS logotipas. */
 .hero-stage{position:relative}
 .hero-stage #hero-title.hero-wordmark{
   margin:0 0 22px;
@@ -55,21 +55,11 @@ body{background:#06111c;color:#eef4f8}.page-film{position:fixed;inset:0;z-index:
   filter:brightness(0) invert(1) drop-shadow(0 3px 12px rgba(0,0,0,.16));
   opacity:.96;
 }
-.hero-micro-divider{
-  width:72px;
-  height:1px;
-  flex:none;
-  margin:24px auto 0;
-  background:linear-gradient(90deg,transparent,rgba(214,195,159,.95),transparent);
-  transform:translateZ(58px);
-}
 @media(max-width:800px){
   .hero-wordmark img{width:min(270px,70vw)}
-  .hero-micro-divider{width:58px;margin-top:22px}
 }
 @media(max-width:480px){
   .hero-wordmark img{width:min(225px,68vw)}
-  .hero-micro-divider{width:52px;margin-top:20px}
 }
 
 /* Subtilus premium kvietimas slinkti prie paslaugų. */
