@@ -3,15 +3,45 @@ const video=document.getElementById('background-video');
 const videoToggle=document.getElementById('video-toggle');
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
 let shouldPlay=!reducedMotion.matches;
-function syncVideoControl(){const paused=video.paused;videoToggle.setAttribute('aria-pressed',String(paused));videoToggle.setAttribute('aria-label',paused?'Paleisti fono vaizdo įrašą':'Pristabdyti fono vaizdo įrašą');videoToggle.querySelector('.video-icon').textContent=paused?'▶':'Ⅱ';videoToggle.querySelector('.video-label').textContent=paused?'Paleisti foną':'Pristabdyti foną';}
-function playBackground(){video.muted=true;video.play().then(syncVideoControl).catch(()=>{syncVideoControl();});}
-videoToggle.addEventListener('click',()=>{shouldPlay=video.paused;if(shouldPlay)playBackground();else video.pause();});
-video.addEventListener('play',syncVideoControl);video.addEventListener('pause',syncVideoControl);
+// Autoplay leidžiamas mobiliosiose naršyklėse tik tyliai ir pačiame puslapyje.
+video.muted=true;
+video.defaultMuted=true;
+video.playsInline=true;
+function syncVideoControl(){
+ const paused=video.paused;
+ videoToggle.setAttribute('aria-pressed',String(paused));
+ videoToggle.setAttribute('aria-label',paused?'Paleisti fono vaizdo įrašą':'Pristabdyti fono vaizdo įrašą');
+ videoToggle.querySelector('.video-icon').textContent=paused?'▶':'Ⅱ';
+ videoToggle.querySelector('.video-label').textContent=paused?'Paleisti foną':'Pristabdyti foną';
+}
+function playBackground(){
+ if(!shouldPlay||document.hidden)return;
+ video.muted=true;
+ const attempt=video.play();
+ if(attempt&&typeof attempt.then==='function')attempt.then(syncVideoControl).catch(syncVideoControl);
+ else syncVideoControl();
+}
+videoToggle.addEventListener('click',()=>{
+ shouldPlay=video.paused;
+ if(shouldPlay){video.autoplay=true;playBackground();}
+ else{video.autoplay=false;video.pause();}
+});
+video.addEventListener('play',syncVideoControl);
+video.addEventListener('pause',syncVideoControl);
 video.addEventListener('error',()=>document.body.classList.add('video-unavailable'));
 video.querySelector('source').addEventListener('error',()=>document.body.classList.add('video-unavailable'));
+// Kai kurie telefonai priima pirmą play() kvietimą tik įkėlus vaizdo duomenis.
+video.addEventListener('canplay',()=>{if(shouldPlay&&video.paused)playBackground();},{once:true});
+window.addEventListener('pageshow',()=>{if(shouldPlay&&video.paused)playBackground();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)video.pause();else if(shouldPlay)playBackground();});
-reducedMotion.addEventListener('change',event=>{shouldPlay=!event.matches;if(shouldPlay)playBackground();else video.pause();});
-if(shouldPlay)playBackground();else syncVideoControl();
+reducedMotion.addEventListener('change',event=>{
+ shouldPlay=!event.matches;
+ video.autoplay=shouldPlay;
+ if(shouldPlay)playBackground();
+ else video.pause();
+});
+if(shouldPlay)playBackground();
+else{video.autoplay=false;video.pause();syncVideoControl();}
 
 // Small, eased perspective shifts; static on touch and reduced-motion devices.
 const heroStage=document.querySelector('.hero-stage');
