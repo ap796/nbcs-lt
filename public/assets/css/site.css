@@ -72,57 +72,55 @@ body{background:#06111c;color:#eef4f8}.page-film{position:fixed;inset:0;z-index:
   .hero-micro-divider{width:52px;margin-top:20px}
 }
 
-/* Minimalistinė pelės ratuko užuomina į žemiau esantį turinį. */
-.hero-scroll-cue{
+/* Subtilus premium kvietimas slinkti prie paslaugų. */
+.hero-discover{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  width:56px;
-  height:60px;
-  flex:none;
-  margin-top:-3px;
-  color:#d6c39f;
-  border-radius:25px;
+  gap:15px;
+  min-height:44px;
+  padding:12px 23px;
+  border:1px solid rgba(214,195,159,.48);
+  border-radius:2px;
+  background:rgba(6,17,28,.1);
+  color:#e4d3b6;
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  text-decoration:none;
   transform:translateZ(45px);
+  transition:border-color .25s ease,background-color .25s ease,color .25s ease;
   -webkit-tap-highlight-color:transparent;
 }
-.hero-scroll-mouse{
-  display:flex;
-  justify-content:center;
-  width:26px;
-  height:43px;
-  padding-top:9px;
-  border:1px solid rgba(214,195,159,.8);
-  border-radius:16px;
-  background:rgba(6,17,28,.13);
-  transition:border-color .25s ease,background-color .25s ease;
+.hero-discover-arrow{
+  display:inline-block;
+  font-size:15px;
+  line-height:1;
+  transform:translateY(0);
 }
-.hero-scroll-wheel{
-  display:block;
-  width:3px;
-  height:9px;
-  border-radius:3px;
-  background:#d6c39f;
+.hero-discover:hover{
+  border-color:rgba(224,202,163,.8);
+  background:rgba(185,164,126,.1);
+  color:#f1dec0;
 }
-.hero-scroll-cue:hover .hero-scroll-mouse{
-  border-color:#f0d6a9;
-  background:rgba(185,164,126,.13);
-}
-.hero-scroll-cue:focus-visible{
+.hero-discover:focus-visible{
   outline:2px solid #d6c39f;
-  outline-offset:3px;
+  outline-offset:5px;
+}
+@media(max-width:480px){
+  .hero-discover{padding:11px 20px;gap:12px;font-size:10px;letter-spacing:1.3px}
 }
 @media(prefers-reduced-motion:no-preference){
-  .hero-scroll-wheel{
-    animation:nbcs-scroll-wheel 2.8s ease-in-out infinite;
-  }
+  .hero-discover-arrow{animation:nbcs-discover-scroll 3.5s ease-in-out infinite}
 }
-@keyframes nbcs-scroll-wheel{
-  0%,15%,75%,100%{transform:translateY(0);opacity:1}
-  45%{transform:translateY(9px);opacity:.35}
-  60%{transform:translateY(0);opacity:0}
+@keyframes nbcs-discover-scroll{
+  0%,65%,100%{transform:translateY(0)}
+  80%{transform:translateY(5px)}
+  91%{transform:translateY(0)}
 }
 @media(prefers-reduced-motion:reduce){
-  .hero-scroll-mouse{transition:none}
-  .hero-scroll-wheel{animation:none}
+  .hero-discover{transition:none}
+  .hero-discover-arrow{animation:none}
 }
