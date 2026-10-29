@@ -242,9 +242,9 @@ header.site-header{
 }
 .navigation-open{overflow:hidden}
 .nav-panel-inner{
-  width:min(760px,100%);
+  width:min(620px,100%);
   margin:auto;
-  padding:0 0 15px;
+  padding:0 0 12px;
 }
 .nav-panel-eyebrow{
   margin-bottom:22px;
@@ -257,7 +257,7 @@ header.site-header{
   display:flex;
   flex-direction:column;
   align-items:stretch;
-  gap:2px;
+  gap:0;
 }
 .site-header .site-nav .nav-panel-links a{
   position:relative;
@@ -265,12 +265,12 @@ header.site-header{
   align-items:center;
   justify-content:space-between;
   width:100%;
-  padding:8px 0;
+  padding:7px 0;
   border-bottom:1px solid rgba(255,255,255,.11);
   font-family:"Manrope","Helvetica Neue",Arial,sans-serif;
-  font-size:clamp(29px,4vw,47px);
+  font-size:clamp(21px,2.1vw,29px);
   font-weight:400;
-  line-height:1.28;
+  line-height:1.35;
   letter-spacing:-.025em;
   text-transform:none;
   color:#edf2f5;
@@ -291,8 +291,8 @@ header.site-header{
   flex-wrap:wrap;
   justify-content:space-between;
   gap:18px 28px;
-  margin-top:38px;
-  padding-top:19px;
+  margin-top:27px;
+  padding-top:16px;
   border-top:1px solid rgba(214,195,159,.37);
 }
 .site-header .site-nav .nav-panel-footer a{
@@ -312,8 +312,8 @@ header.site-header{
   .site-header .menu{width:44px;height:44px;min-height:44px}
   .site-header .site-nav{padding:90px 7% 26px}
   .nav-panel-eyebrow{font-size:10px;margin-bottom:14px}
-  .site-header .site-nav .nav-panel-links a{font-size:clamp(25px,7vw,33px);padding:7px 0}
-  .nav-panel-footer{margin-top:25px;gap:14px}
+  .site-header .site-nav .nav-panel-links a{font-size:clamp(19px,5vw,23px);padding:6px 0}
+  .nav-panel-footer{margin-top:19px;gap:14px}
 }
 @media(prefers-reduced-motion:reduce){
   .site-header .menu,
