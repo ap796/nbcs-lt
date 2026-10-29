@@ -35,6 +35,15 @@ document.addEventListener('keydown',event=>{
   }
 });
 window.addEventListener('hashchange',()=>{if(n.classList.contains('open'))setMenuOpen(false);});
+
+// Viršutinė juosta virš video lieka skaidri, o slenkant tampa tamsesnė.
+const siteHeader=document.querySelector('header.site-header');
+function syncScrolledHeader(){
+  siteHeader.classList.toggle('is-scrolled',window.scrollY>20);
+}
+window.addEventListener('scroll',syncScrolledHeader,{passive:true});
+window.addEventListener('pageshow',syncScrolledHeader);
+syncScrolledHeader();
 const video=document.getElementById('background-video');
 const videoToggle=document.getElementById('video-toggle');
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
