@@ -48,7 +48,7 @@ body{background:#06111c;color:#eef4f8}.page-film{position:fixed;inset:0;z-index:
 }
 .hero-wordmark img{
   display:block;
-  width:min(340px,64vw);
+  width:min(305px,60vw);
   max-width:100%;
   height:auto;
   margin-inline:auto;
@@ -64,11 +64,11 @@ body{background:#06111c;color:#eef4f8}.page-film{position:fixed;inset:0;z-index:
   transform:translateZ(58px);
 }
 @media(max-width:800px){
-  .hero-wordmark img{width:min(300px,74vw)}
+  .hero-wordmark img{width:min(270px,70vw)}
   .hero-micro-divider{width:58px;margin-top:22px}
 }
 @media(max-width:480px){
-  .hero-wordmark img{width:min(250px,72vw)}
+  .hero-wordmark img{width:min(225px,68vw)}
   .hero-micro-divider{width:52px;margin-top:20px}
 }
 
