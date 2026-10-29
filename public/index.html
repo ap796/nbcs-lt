@@ -11,11 +11,20 @@
 @keyframes nbcs-expertise-roll{0%{opacity:0;transform:translateY(11px)}3%,29%{opacity:1;transform:translateY(0)}33.333%,100%{opacity:0;transform:translateY(-11px)}}
 @media(max-width:800px){#hero-expertise{max-width:550px;height:50px;min-height:50px;margin-top:20px;font-size:13px;letter-spacing:.02em}}
 @media(max-width:480px){#hero-expertise{max-width:320px;height:56px;min-height:56px;margin-top:18px;font-size:12px;letter-spacing:.01em}.hero-rule-bottom{margin-top:22px}}
-@media(prefers-reduced-motion:reduce){#hero-expertise .hero-expertise-line{animation:none!important;opacity:0;transform:none}#hero-expertise .hero-expertise-line:first-child{opacity:1}}
+/* Sumažinto judėjimo režimu keičiamas tik tekstas, be slinkimo ar išblėsimo. */
+@keyframes nbcs-expertise-switch{0%,33.32%{opacity:1}33.333%,100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){
+  #hero-expertise .hero-expertise-line{
+    animation:nbcs-expertise-switch 13.5s steps(1,end) infinite both!important;
+    transform:none!important;
+  }
+  #hero-expertise .hero-expertise-line:nth-child(2){animation-delay:-4.5s!important}
+  #hero-expertise .hero-expertise-line:nth-child(3){animation-delay:-9s!important}
+}
 </style>
 </head>
 <body>
-<div class="page-film" aria-hidden="true"><video id="background-video" muted loop playsinline preload="metadata" poster="assets/dell-server-poster.jpg"><source src="assets/dell-server-background.mp4" type="video/mp4"></video>
+<div class="page-film" aria-hidden="true"><video id="background-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="assets/dell-server-poster.jpg"><source src="assets/dell-server-background.mp4" type="video/mp4"></video>
 <div class="film-shade">
 </div>
 </div><button id="video-toggle" class="video-toggle" type="button" aria-label="Pristabdyti fono vaizdo įrašą" aria-pressed="false"><span class="video-icon">Ⅱ</span><span class="video-label">Pristabdyti foną</span></button>
@@ -418,7 +427,7 @@
 <footer><a class="logo" href="#"><img src="assets/nbcs-logo.png" alt="NBCS" width="2048" height="454"></a>
 <div class="footer-legal"><span>© 2026 NBCS. Visos teisės saugomos.</span><a href="/privatumo-politika/">Duomenų privatumo politika</a>
 </div><a href="#">Į pradžią ↑</a>
-</footer><script src="/assets/js/site.js?v=3" defer></script>
+</footer><script src="/assets/js/site.js?v=4" defer></script>
 </body>
 </html>
 
