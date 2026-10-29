@@ -1,0 +1,116 @@
+/* NBCS slapukų pasirinkimo juosta ir įkeliamo žemėlapio uždanga. */
+.cookie-notice{
+  position:fixed;
+  z-index:9999;
+  left:50%;
+  bottom:20px;
+  width:min(900px,calc(100% - 28px));
+  max-height:calc(100dvh - 32px);
+  overflow-y:auto;
+  transform:translateX(-50%);
+  padding:23px 27px;
+  background:rgba(7,22,34,.98);
+  border:1px solid rgba(214,195,159,.44);
+  box-shadow:0 18px 65px rgba(0,0,0,.5);
+  color:#e8edf0;
+  font:14px/1.65 "Manrope","Helvetica Neue",Arial,sans-serif;
+}
+.cookie-notice[hidden]{display:none!important}
+.cookie-notice__title{
+  margin:0 0 6px;
+  font-size:16px;
+  font-weight:600;
+  letter-spacing:.01em;
+  color:#fff;
+}
+.cookie-notice__description{
+  margin:0;
+  max-width:780px;
+  font-size:13px;
+  line-height:1.65;
+  color:#c5d3dc;
+}
+.cookie-notice a{
+  color:#e3cba4;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.cookie-notice__actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px;
+}
+.cookie-notice__actions button{
+  flex:1 1 185px;
+  min-height:44px;
+  padding:10px 18px;
+  border:1px solid rgba(214,195,159,.74);
+  border-radius:2px;
+  background:rgba(214,195,159,.08);
+  color:#f4e5cc;
+  font:500 12px/1.35 "Manrope","Helvetica Neue",Arial,sans-serif;
+  letter-spacing:.025em;
+  cursor:pointer;
+  transition:background-color .2s ease,border-color .2s ease;
+}
+.cookie-notice__actions button:hover{
+  background:rgba(214,195,159,.19);
+  border-color:#ead2ac;
+}
+.cookie-notice__actions button:focus-visible,
+.cookie-settings-trigger:focus-visible,
+.location-map-load:focus-visible{
+  outline:2px solid #e4cd9f;
+  outline-offset:3px;
+}
+.cookie-settings-trigger{
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:#b7c5cf;
+  font:inherit;
+  text-decoration:underline;
+  text-underline-offset:4px;
+  cursor:pointer;
+}
+.cookie-settings-trigger:hover{color:#fff}
+.location-map-placeholder{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+  min-height:360px;
+  padding:30px 20px;
+  background:linear-gradient(150deg,#122e41,#081a29);
+  text-align:center;
+}
+.location-map-placeholder p{
+  margin:0;
+  color:#d3dee6;
+  font-size:14px;
+  line-height:1.6;
+}
+.location-map-load{
+  min-height:44px;
+  padding:10px 19px;
+  border:1px solid rgba(214,195,159,.72);
+  background:rgba(214,195,159,.08);
+  color:#f4e5cc;
+  font:500 12px/1.4 "Manrope","Helvetica Neue",Arial,sans-serif;
+  cursor:pointer;
+}
+.location-map-load:hover{background:rgba(214,195,159,.17)}
+@media(max-width:800px){
+  .location-map-placeholder{min-height:300px}
+}
+@media(max-width:600px){
+  .cookie-notice{bottom:10px;width:calc(100% - 20px);padding:19px 17px}
+  .cookie-notice__actions{gap:9px;margin-top:14px}
+  .cookie-notice__actions button{flex-basis:130px}
+}
+@media(prefers-reduced-motion:reduce){
+  .cookie-notice__actions button{transition:none}
+}
