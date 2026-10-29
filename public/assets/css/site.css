@@ -48,11 +48,12 @@ body{background:#06111c;color:#eef4f8}.page-film{position:fixed;inset:0;z-index:
 }
 .hero-wordmark img{
   display:block;
-  width:min(430px,72vw);
+  width:min(340px,64vw);
   max-width:100%;
   height:auto;
   margin-inline:auto;
-  filter:drop-shadow(0 6px 28px rgba(0,0,0,.32));
+  filter:grayscale(1) brightness(1.22) contrast(.9) drop-shadow(0 5px 18px rgba(0,0,0,.22));
+  opacity:.94;
 }
 .hero-micro-divider{
   width:72px;
@@ -84,15 +85,28 @@ body{background:#06111c;color:#eef4f8}.page-film{position:fixed;inset:0;z-index:
 .hero-more:hover{color:#fff;opacity:1}
 .hero-more:focus-visible{outline:2px solid #d6c39f;outline-offset:6px}
 @media(max-width:800px){
-  .hero-wordmark img{width:min(360px,78vw)}
+  .hero-wordmark img{width:min(300px,74vw)}
   .hero-micro-divider{width:58px;margin-top:22px}
   .hero-more{bottom:18px;font-size:10px;letter-spacing:1.5px}
 }
 @media(max-width:480px){
-  .hero-wordmark img{width:min(290px,78vw)}
+  .hero-wordmark img{width:min(250px,72vw)}
   .hero-micro-divider{width:52px;margin-top:20px}
   .hero-more{bottom:16px;font-size:10px;letter-spacing:1.3px}
 }
 @media(prefers-reduced-motion:reduce){
   .hero-more{transition:none}
+}
+
+
+/* Sumažintas, monochrominis NBCS logotipas viršutinėje navigacijoje. */
+header .logo img{
+  width:138px;
+  max-width:100%;
+  height:auto;
+  filter:grayscale(1) brightness(1.22) contrast(.92);
+  opacity:.90;
+}
+@media(max-width:480px){
+  header .logo img{width:126px}
 }
