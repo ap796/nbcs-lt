@@ -17,4 +17,4 @@ Not performed:
 - Cloudflare deployment, GitHub push, DNS setup or real HTTP redirect/header validation.
 - Live Google Maps and clipboard interaction checks.
 
-Known source issue: the legacy cookie-information image linked from the privacy policy returns HTTP 404. The original external link is preserved and documented in README; it is not an embedded runtime image.
+Resolved: the obsolete cookie-information image link that returned HTTP 404 was removed from the privacy policy. The remaining policy text has not been legally reviewed.
