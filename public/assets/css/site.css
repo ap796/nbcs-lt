@@ -501,7 +501,7 @@ header.site-header.is-scrolled::before{opacity:1}
   transition:background-color .2s ease,border-color .2s ease;
 }
 .contact .copy-company:hover{background:rgba(214,195,159,.14);border-color:#d6c39f}
-.contact .copy-company:focus-visible,.contact .copy-account:focus-visible{
+.contact .copy-company:focus-visible,.contact .copy-code:focus-visible{
   outline:2px solid #e3cba4;
   outline-offset:3px;
 }
@@ -536,10 +536,18 @@ header.site-header.is-scrolled::before{opacity:1}
   letter-spacing:.02em;
 }
 .contact .company-codes dd{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  min-width:0;
   margin:0;
   color:#e8eff3;
   font:500 15px/1.4 "Manrope","Helvetica Neue",Arial,sans-serif;
   font-variant-numeric:tabular-nums;
+}
+.contact .company-code-value{
+  min-width:0;
   overflow-wrap:anywhere;
   user-select:all;
 }
@@ -576,13 +584,13 @@ header.site-header.is-scrolled::before{opacity:1}
   overflow-wrap:anywhere;
   user-select:all;
 }
-.contact .copy-account{
+.contact .copy-code{
   display:grid;
   place-items:center;
   flex:none;
-  width:34px;
-  height:34px;
-  min-width:34px;
+  width:38px;
+  height:38px;
+  min-width:38px;
   padding:0;
   border:1px solid rgba(214,195,159,.34);
   border-radius:2px;
@@ -593,11 +601,11 @@ header.site-header.is-scrolled::before{opacity:1}
   cursor:pointer;
   transition:background-color .2s ease,border-color .2s ease;
 }
-.contact .copy-account:hover,.contact .copy-account.is-copied{
+.contact .copy-code:hover,.contact .copy-code.is-copied{
   background:rgba(214,195,159,.17);
   border-color:#e0caa3;
 }
-.contact .copy-account:disabled{opacity:.7;cursor:wait}
+.contact .copy-code:disabled{opacity:.7;cursor:wait}
 .contact .copy-status{
   margin:12px 0 0;
   color:#e7d2a9;
@@ -647,7 +655,7 @@ header.site-header.is-scrolled::before{opacity:1}
   .contact .company-name{margin-bottom:9px}
   .contact .company-codes>div{padding:7px 0}
   .contact .bank-accounts>div{padding:7px 0}
-  .contact .copy-account{width:40px;height:40px;min-width:40px}
+  .contact .copy-code{width:40px;height:40px;min-width:40px}
   .contact .location-header{padding:15px 17px;gap:14px}
   .contact .location-header h3{font-size:19px}
   .contact .location-route{padding:9px 13px;font-size:11px}
@@ -655,7 +663,7 @@ header.site-header.is-scrolled::before{opacity:1}
   .contact .location-map-placeholder{min-height:205px;padding:16px}
 }
 @media(prefers-reduced-motion:reduce){
-  .contact .email,.contact .copy-company,.contact .copy-account{transition:none}
+  .contact .email,.contact .copy-company,.contact .copy-code{transition:none}
 }
 
 /* NBCS hero — vientisa paslaugų žymoms identiška žalia #9BCC46. */
@@ -980,7 +988,7 @@ header.site-header.is-scrolled::before{opacity:1}
 /* Tikslios interaktyvių elementų būsenos, nekeičiant NBCS spalvų. */
 .nbcs-hero-cta,
 .contact .copy-company,
-.contact .copy-account,
+.contact .copy-code,
 .contact .location-route,
 .projects-expand{
   -webkit-tap-highlight-color:transparent;
