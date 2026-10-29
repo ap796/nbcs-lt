@@ -154,27 +154,23 @@ header.site-header{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:14px;
-  min-height:50px;
-  padding:8px 9px 8px 20px;
-  border:1px solid rgba(214,195,159,.53);
-  border-radius:999px;
-  background:rgba(5,20,33,.34);
-  backdrop-filter:blur(9px);
-  -webkit-backdrop-filter:blur(9px);
+  width:48px;
+  height:48px;
+  min-height:48px;
+  padding:0;
+  border:1px solid rgba(214,195,159,.22);
+  border-radius:4px;
+  background:rgba(5,20,33,.26);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
   color:#e6c994;
-  font-family:"Manrope","Helvetica Neue",Arial,sans-serif;
-  font-size:11px;
-  font-weight:500;
-  line-height:1;
-  letter-spacing:1.9px;
   cursor:pointer;
   transition:border-color .25s ease,background-color .25s ease,color .25s ease;
   -webkit-tap-highlight-color:transparent;
 }
 .site-header .menu:hover{
-  border-color:rgba(240,215,166,.87);
-  background:rgba(214,195,159,.11);
+  border-color:rgba(240,215,166,.65);
+  background:rgba(214,195,159,.1);
   color:#f5dba8;
 }
 .site-header .menu:focus-visible{
@@ -183,50 +179,32 @@ header.site-header{
 }
 .site-header .menu-mark{
   position:relative;
-  display:grid;
+  display:block;
+  width:24px;
+  height:22px;
   flex:none;
-  grid-template-columns:repeat(2,5px);
-  gap:4px;
-  place-content:center;
-  width:32px;
-  height:32px;
-  border:1px solid rgba(214,195,159,.42);
-  border-radius:50%;
-  background:rgba(214,195,159,.07);
 }
 .site-header .menu-mark span{
-  display:block;
-  width:5px;
-  height:5px;
-  border-radius:1px;
-  background:currentColor;
-  transition:opacity .25s ease,transform .25s ease;
-}
-.site-header .menu-mark::before,
-.site-header .menu-mark::after{
-  content:"";
   position:absolute;
-  left:50%;
-  top:50%;
+  right:0;
   display:block;
-  width:15px;
   height:1.5px;
   background:currentColor;
+  transform-origin:center;
+  transition:transform .28s ease,opacity .22s ease;
+}
+.site-header .menu-mark span:nth-child(1){top:4px;width:24px}
+.site-header .menu-mark span:nth-child(2){top:10px;width:16px}
+.site-header .menu-mark span:nth-child(3){top:16px;width:24px}
+.site-header .menu[aria-expanded="true"] .menu-mark span:nth-child(1){
+  transform:translateY(6px) rotate(45deg);
+}
+.site-header .menu[aria-expanded="true"] .menu-mark span:nth-child(2){
   opacity:0;
-  transform:translate(-50%,-50%) rotate(0);
-  transition:opacity .25s ease,transform .25s ease;
+  transform:scaleX(0);
 }
-.site-header .menu[aria-expanded="true"] .menu-mark span{
-  opacity:0;
-  transform:scale(.4);
-}
-.site-header .menu[aria-expanded="true"] .menu-mark::before{
-  opacity:1;
-  transform:translate(-50%,-50%) rotate(45deg);
-}
-.site-header .menu[aria-expanded="true"] .menu-mark::after{
-  opacity:1;
-  transform:translate(-50%,-50%) rotate(-45deg);
+.site-header .menu[aria-expanded="true"] .menu-mark span:nth-child(3){
+  transform:translateY(-6px) rotate(-45deg);
 }
 .site-header .site-nav{
   position:fixed;
@@ -326,14 +304,12 @@ header.site-header{
 .site-header .site-nav .nav-panel-footer a:hover{color:#e9c68c}
 @media(max-width:800px){
   header.site-header{height:76px;padding:0 5%}
-  .site-header .menu{gap:12px;min-height:46px;padding:7px 8px 7px 15px;font-size:11px}
-  .site-header .menu-mark{width:29px;height:29px}
+  .site-header .menu{width:46px;height:46px;min-height:46px}
   .site-header .site-nav{padding:94px 7% 36px}
 }
 @media(max-width:480px){
   header.site-header{height:72px;padding:0 5%}
-  .site-header .menu{gap:10px;min-height:42px;padding:6px 7px 6px 13px;font-size:10px;letter-spacing:1.4px}
-  .site-header .menu-mark{width:27px;height:27px}
+  .site-header .menu{width:44px;height:44px;min-height:44px}
   .site-header .site-nav{padding:90px 7% 26px}
   .nav-panel-eyebrow{font-size:10px;margin-bottom:14px}
   .site-header .site-nav .nav-panel-links a{font-size:clamp(25px,7vw,33px);padding:7px 0}
@@ -342,8 +318,6 @@ header.site-header{
 @media(prefers-reduced-motion:reduce){
   .site-header .menu,
   .site-header .menu-mark span,
-  .site-header .menu-mark::before,
-  .site-header .menu-mark::after,
   .site-header .site-nav,
   .site-header .site-nav .nav-panel-links a{transition:none}
 }
