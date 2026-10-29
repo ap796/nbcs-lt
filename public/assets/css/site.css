@@ -71,3 +71,23 @@ body{background:#06111c;color:#eef4f8}.page-film{position:fixed;inset:0;z-index:
   .hero-wordmark img{width:min(250px,72vw)}
   .hero-micro-divider{width:52px;margin-top:20px}
 }
+
+/* Subtili užuomina, kad „Atraskite daugiau“ slenka į kitą skiltį. */
+.hero-contact .hero-scroll-arrow{
+  display:inline-block;
+  line-height:1;
+  transform:translate(0,0);
+}
+@media(prefers-reduced-motion:no-preference){
+  .hero-contact .hero-scroll-arrow{
+    animation:hero-scroll-hint 3.5s ease-in-out infinite;
+  }
+}
+@keyframes hero-scroll-hint{
+  0%,65%,100%{transform:translate(0,0)}
+  78%{transform:translate(4px,4px)}
+  91%{transform:translate(0,0)}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-contact .hero-scroll-arrow{animation:none;transform:none}
+}
