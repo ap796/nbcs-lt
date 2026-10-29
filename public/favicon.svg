@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>NBCS</title>
+  <rect width="64" height="64" rx="12" fill="#061827"/>
+  <path d="M7 49V14h8l20 23V14h8v35h-8L15 26v23H7Z" fill="#0584bf"/>
+  <g fill="#9bcc46">
+    <circle cx="53" cy="12" r="3"/>
+    <circle cx="52" cy="23" r="3.8"/>
+    <circle cx="51.5" cy="36" r="4.1"/>
+    <circle cx="54" cy="49" r="4.4"/>
+  </g>
+</svg>
