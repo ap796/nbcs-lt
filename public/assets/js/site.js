@@ -1,4 +1,42 @@
-const b=document.querySelector('.menu'),n=document.querySelector('nav');b.addEventListener('click',()=>{const open=n.classList.toggle('open');b.setAttribute('aria-expanded',String(open));b.setAttribute('aria-label',open?'Užverti meniu':'Atverti meniu')});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');b.setAttribute('aria-expanded','false')}));
+// Viso ekrano meniu: klaviatūra, Escape ir fokusavimo valdymas.
+const b=document.querySelector('.site-header .menu');
+const n=document.getElementById('navigation');
+const navLabel=b.querySelector('.menu-label');
+function setMenuOpen(open,restoreFocus=false){
+  n.classList.toggle('open',open);
+  n.inert=!open;
+  document.body.classList.toggle('navigation-open',open);
+  b.setAttribute('aria-expanded',String(open));
+  b.setAttribute('aria-label',open?'Uždaryti meniu':'Atverti meniu');
+  navLabel.textContent=open?'UŽDARYTI':'MENIU';
+  if(open){
+    const first=n.querySelector('.nav-panel-links a');
+    if(first)first.focus({preventScroll:true});
+  }else if(restoreFocus){
+    b.focus({preventScroll:true});
+  }
+}
+b.addEventListener('click',()=>setMenuOpen(!n.classList.contains('open'),true));
+n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenuOpen(false)));
+n.addEventListener('click',event=>{if(event.target===n)setMenuOpen(false,true);});
+document.querySelector('.site-header .logo').addEventListener('click',()=>setMenuOpen(false));
+document.addEventListener('keydown',event=>{
+  if(!n.classList.contains('open'))return;
+  if(event.key==='Escape'){
+    event.preventDefault();
+    setMenuOpen(false,true);
+    return;
+  }
+  if(event.key!=='Tab')return;
+  const focusables=[b,...n.querySelectorAll('a[href]')];
+  const first=focusables[0],last=focusables[focusables.length-1];
+  if(event.shiftKey&&document.activeElement===first){
+    event.preventDefault();last.focus();
+  }else if(!event.shiftKey&&document.activeElement===last){
+    event.preventDefault();first.focus();
+  }
+});
+window.addEventListener('hashchange',()=>{if(n.classList.contains('open'))setMenuOpen(false);});
 const video=document.getElementById('background-video');
 const videoToggle=document.getElementById('video-toggle');
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
