@@ -38,30 +38,6 @@ body{background:#06111c;color:#eef4f8}.page-film{position:fixed;inset:0;z-index:
   .services .service{transition:none}
 }
 
-/* Hero patobulinimai: tikras NBCS logotipas. */
-.hero-stage{position:relative}
-.hero-stage #hero-title.hero-wordmark{
-  margin:0 0 22px;
-  line-height:1;
-  text-shadow:none;
-  transform:translateZ(70px);
-}
-.hero-wordmark img{
-  display:block;
-  width:min(305px,60vw);
-  max-width:100%;
-  height:auto;
-  margin-inline:auto;
-  filter:brightness(0) invert(1) drop-shadow(0 3px 12px rgba(0,0,0,.16));
-  opacity:.96;
-}
-@media(max-width:800px){
-  .hero-wordmark img{width:min(270px,70vw)}
-}
-@media(max-width:480px){
-  .hero-wordmark img{width:min(225px,68vw)}
-}
-
 /* Subtilus premium kvietimas slinkti prie paslaugų. */
 .hero-discover{
   display:inline-flex;
@@ -618,4 +594,147 @@ header.site-header{
 }
 @media(prefers-reduced-motion:reduce){
   .contact .email,.contact .copy-company,.contact .copy-account{transition:none}
+}
+
+
+/* NBCS hero: aiškus vertės pažadas vietoje pakartoto logotipo. */
+.hero-stage>.hero-scene{
+  max-width:1160px;
+  isolation:auto;
+}
+.hero-stage .hero-ambient-mark{
+  position:absolute;
+  inset:-10% 0 -4%;
+  z-index:0;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  pointer-events:none;
+  font-family:"Manrope","Helvetica Neue",Arial,sans-serif;
+  font-size:clamp(360px,54vw,740px);
+  font-weight:500;
+  line-height:1;
+  letter-spacing:-.11em;
+  color:rgba(213,230,242,.027);
+  -webkit-text-stroke:1.5px rgba(213,230,242,.13);
+  user-select:none;
+}
+.hero-stage .hero-scene > :not(.hero-ambient-mark){
+  position:relative;
+  z-index:1;
+}
+.hero-stage #hero-title.hero-message{
+  width:100%;
+  max-width:1090px;
+  margin:0 0 17px;
+  color:#f3f6f8;
+  font-family:"Manrope","Avenir Next","Helvetica Neue",Arial,sans-serif;
+  font-size:clamp(40px,5.5vw,76px);
+  font-weight:400;
+  line-height:1.14;
+  letter-spacing:-.056em;
+  text-align:center;
+  text-wrap:balance;
+  text-shadow:0 6px 35px rgba(0,0,0,.56);
+  transform:translateZ(70px);
+  animation:none;
+}
+.hero-message-line{
+  display:block;
+}
+.hero-message-accent{
+  color:#d8bd8c;
+}
+.hero-stage .hero-slogan{
+  max-width:780px;
+  margin:0;
+  font-size:clamp(17px,1.7vw,23px);
+  font-weight:400;
+  line-height:1.48;
+  letter-spacing:-.015em;
+  text-wrap:balance;
+}
+@media(prefers-reduced-motion:no-preference){
+  .hero-message-line{
+    animation:nbcs-message-reveal 1s cubic-bezier(.22,1,.36,1) both;
+  }
+  .hero-message-line:nth-child(2){
+    animation-delay:.18s;
+  }
+}
+@keyframes nbcs-message-reveal{
+  from{opacity:0;transform:translateY(15px);filter:blur(3px)}
+  to{opacity:1;transform:translateY(0);filter:blur(0)}
+}
+@media(max-width:800px){
+  .hero-stage #hero-title.hero-message{
+    max-width:740px;
+    margin-bottom:14px;
+    font-size:clamp(37px,6.7vw,55px);
+    letter-spacing:-.048em;
+    line-height:1.18;
+  }
+  .hero-stage .hero-slogan{
+    max-width:540px;
+    font-size:clamp(16px,2.5vw,19px);
+  }
+  .hero-stage .hero-ambient-mark{
+    font-size:clamp(345px,80vw,580px);
+    -webkit-text-stroke:1px rgba(213,230,242,.12);
+  }
+}
+@media(max-width:480px){
+  .hero-stage{
+    padding-top:24px;
+    padding-bottom:40px;
+  }
+  .hero-stage .hero-rule-top{
+    height:26px;
+    margin-bottom:13px;
+  }
+  .hero-stage .hero-kicker{
+    margin-bottom:16px;
+    font-size:10px;
+    letter-spacing:1.35px;
+  }
+  .hero-stage #hero-title.hero-message{
+    margin-bottom:13px;
+    font-size:clamp(31px,8vw,37px);
+    line-height:1.18;
+    letter-spacing:-.05em;
+  }
+  .hero-stage .hero-slogan{
+    max-width:330px;
+    font-size:15px;
+    line-height:1.45;
+    letter-spacing:-.012em;
+  }
+  .hero-stage #hero-expertise{
+    margin-top:14px;
+  }
+  .hero-stage .hero-rule-bottom{
+    height:27px;
+    margin:13px 0 19px;
+  }
+  .hero-stage .hero-ambient-mark{
+    inset:-5% -12% 0;
+    font-size:clamp(280px,90vw,390px);
+    color:rgba(213,230,242,.024);
+    -webkit-text-stroke:1px rgba(213,230,242,.10);
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-stage #hero-title.hero-message,
+  .hero-message-line{
+    animation:none!important;
+  }
+  .hero-message-line{
+    opacity:1;
+    transform:none;
+    filter:none;
+  }
+}
+@media(forced-colors:active){
+  .hero-stage .hero-ambient-mark{display:none}
+  .hero-message-accent{color:CanvasText}
 }
