@@ -1,28 +1,7 @@
 <!doctype html>
 <html lang="lt">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="NBCS — IT infrastruktūros ir kibernetinio saugumo sprendimai verslui ir viešajam sektoriui."><title>NBCS — Patikimas pagrindas jūsų IT</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/css/site.css?v=23">
-<link rel="stylesheet" href="/assets/css/slogan-finish.css?v=2">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="NBCS — IT infrastruktūros ir kibernetinio saugumo sprendimai verslui ir viešajam sektoriui."><title>NBCS — Patikimas pagrindas jūsų IT</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/css/site.css?v=24">
 <link rel="stylesheet" href="/assets/css/consent.css?v=1">
-<style>
-/* Nepriklausoma nuo JavaScript ir naršyklėje talpyklinamų stiliaus failų hero animacija. */
-#hero-expertise{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;width:100%;max-width:880px;height:40px;min-height:40px;margin:28px auto 0;font-family:"Helvetica Neue",Arial,sans-serif;font-size:clamp(12px,1.15vw,15px);font-weight:400;letter-spacing:.045em;line-height:1.5;text-align:center;color:#c4b18c;transform:translateZ(62px)}
-#hero-expertise .hero-expertise-line{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;width:100%;opacity:0;transform:translateY(11px);animation:nbcs-expertise-roll 13.5s linear infinite both}
-#hero-expertise .hero-expertise-line:nth-child(2){animation-delay:4.5s}
-#hero-expertise .hero-expertise-line:nth-child(3){animation-delay:9s}
-@keyframes nbcs-expertise-roll{0%{opacity:0;transform:translateY(11px)}3%,29%{opacity:1;transform:translateY(0)}33.333%,100%{opacity:0;transform:translateY(-11px)}}
-@media(max-width:800px){#hero-expertise{max-width:550px;height:50px;min-height:50px;margin-top:25px;font-size:13px;letter-spacing:.02em}}
-@media(max-width:480px){#hero-expertise{max-width:320px;height:56px;min-height:56px;margin-top:24px;font-size:12px;letter-spacing:.01em}.hero-rule-bottom{margin-top:22px}}
-/* Sumažinto judėjimo režimu keičiamas tik tekstas, be slinkimo ar išblėsimo. */
-@keyframes nbcs-expertise-switch{0%,33.32%{opacity:1}33.333%,100%{opacity:0}}
-@media(prefers-reduced-motion:reduce){
-  #hero-expertise .hero-expertise-line{
-    animation:nbcs-expertise-switch 13.5s steps(1,end) infinite both!important;
-    transform:none!important;
-  }
-  #hero-expertise .hero-expertise-line:nth-child(2){animation-delay:-9s!important}
-  #hero-expertise .hero-expertise-line:nth-child(3){animation-delay:-4.5s!important}
-}
-</style>
 </head>
 <body>
 <div class="page-film" aria-hidden="true"><video id="background-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="assets/dell-server-poster.jpg"><source src="assets/dell-server-background.mp4" type="video/mp4"></video>
@@ -53,25 +32,17 @@
 </nav>
 </header>
 <main>
-<section class="wrap hero hero-stage" aria-labelledby="hero-title">
-<div class="hero-scene">
-<div class="hero-ambient-mark" aria-hidden="true">N</div>
-<div class="hero-rule hero-rule-top" aria-hidden="true">
-</div>
-<p class="hero-kicker">Nuo 2008 metų veikianti IT įmonė</p>
-<h1 id="hero-title" class="hero-message">
-<span class="hero-message-line">Patikimas pagrindas</span>
-<span class="hero-message-line">jūsų <span class="hero-message-accent">IT</span></span>
-</h1>
-<p class="hero-slogan"><span class="slogan-finish">Visada pasirengusi naujiems rinkos iššūkiams</span></p>
-<div id="hero-expertise" class="hero-expertise" role="group" aria-label="NBCS veiklos sritys: IT infrastruktūra ir sistemų priežiūra; kibernetinis saugumas ir duomenų apsauga; serveriai, saugyklos ir duomenų centrai.">
-<span class="hero-expertise-line" aria-hidden="true">IT infrastruktūra ir sistemų priežiūra</span>
-<span class="hero-expertise-line" aria-hidden="true">Kibernetinis saugumas ir duomenų apsauga</span>
-<span class="hero-expertise-line" aria-hidden="true">Serveriai, saugyklos ir duomenų centrai</span>
-</div>
-<div class="hero-rule hero-rule-bottom" aria-hidden="true">
-</div><a class="hero-discover" href="#sprendimai">Atraskite daugiau <span class="hero-discover-arrow" aria-hidden="true">↓</span></a>
-</div>
+<section class="nbcs-hero" aria-labelledby="hero-title">
+  <div class="nbcs-hero-content">
+    <p class="nbcs-hero-kicker">NBCS / IT SPRENDIMAI NUO 2008 METŲ</p>
+    <h1 id="hero-title" class="nbcs-hero-headline">
+      <span class="nbcs-hero-phrase is-active" aria-hidden="false">Patikima IT<br>infrastruktūra</span>
+      <span class="nbcs-hero-phrase" aria-hidden="true">Kibernetinis<br>saugumas verslui</span>
+      <span class="nbcs-hero-phrase" aria-hidden="true">Serveriai ir<br>duomenų sprendimai</span>
+    </h1>
+    <p class="nbcs-hero-description">Projektuojame, diegiame ir prižiūrime IT sprendimus verslui bei viešajam sektoriui.</p>
+    <a class="nbcs-hero-cta" href="#sprendimai">Sprendimai <span aria-hidden="true">↗</span></a>
+  </div>
 </section>
 <section class="partners-section section" id="partneriai" aria-labelledby="partners-title">
 <div class="wrap">
@@ -472,7 +443,7 @@
 <footer><a class="logo" href="#"><img src="assets/nbcs-logo.png" alt="NBCS" width="2048" height="454"></a>
 <div class="footer-legal"><span>© 2026 NBCS. Visos teisės saugomos.</span><a href="/privatumo-politika/">Duomenų privatumo politika</a><button class="cookie-settings-trigger" type="button">Slapukų nustatymai</button>
 </div><a href="#">Į pradžią ↑</a>
-</footer><script src="/assets/js/consent.js?v=1" defer></script><script src="/assets/js/site.js?v=8" defer></script>
+</footer><script src="/assets/js/consent.js?v=1" defer></script><script src="/assets/js/site.js?v=9" defer></script>
 </body>
 </html>
 
