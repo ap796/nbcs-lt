@@ -52,8 +52,8 @@ body{background:#06111c;color:#eef4f8}.page-film{position:fixed;inset:0;z-index:
   max-width:100%;
   height:auto;
   margin-inline:auto;
-  filter:grayscale(1) brightness(1.22) contrast(.9) drop-shadow(0 5px 18px rgba(0,0,0,.22));
-  opacity:.94;
+  filter:brightness(0) invert(1) drop-shadow(0 3px 12px rgba(0,0,0,.16));
+  opacity:.96;
 }
 .hero-micro-divider{
   width:72px;
