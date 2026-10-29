@@ -97,16 +97,3 @@ body{background:#06111c;color:#eef4f8}.page-film{position:fixed;inset:0;z-index:
 @media(prefers-reduced-motion:reduce){
   .hero-more{transition:none}
 }
-
-
-/* Sumažintas, monochrominis NBCS logotipas viršutinėje navigacijoje. */
-header .logo img{
-  width:138px;
-  max-width:100%;
-  height:auto;
-  filter:grayscale(1) brightness(1.22) contrast(.92);
-  opacity:.90;
-}
-@media(max-width:480px){
-  header .logo img{width:126px}
-}
