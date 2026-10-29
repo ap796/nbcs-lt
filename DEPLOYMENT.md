@@ -55,7 +55,7 @@ Cloudflare Pages publishes a public website by default; the previous ChatGPT Sit
 - **Missing files after upload:** extract the ZIP first; don't commit a ZIP as the website.
 - **Nested repository folder:** move its contents to the repository root, or set Cloudflare's root directory to that folder.
 - **Video does not autoplay:** browser policy or reduced-motion preference may prevent playback; use the playback control.
-- **Old cookie image:** see README's known legacy link; that remote image was already unavailable.
+- **Privacy policy:** the obsolete cookie-image link has been removed; review the remaining policy against actual site behavior.
 - **Redirects don't work locally:** Python's static server doesn't interpret Pages rules.
 
 ## Official references (checked 29 October 2026)
