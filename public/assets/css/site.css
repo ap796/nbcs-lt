@@ -528,7 +528,7 @@ header.site-header{
   .contact .email,.contact .copy-company,.contact .copy-account{transition:none}
 }
 
-/* NBCS hero — centruotas tekstas ir subtilūs žalios spalvos akcentai. */
+/* NBCS hero — švelnus mėlynas tekstas, viena logotipo žalia raidė, video be papildomo tamsinimo. */
 .nbcs-hero{
   position:relative;
   display:flex;
@@ -536,15 +536,6 @@ header.site-header{
   justify-content:center;
   min-height:calc(100svh - 94px);
   padding:68px 5.5% 92px;
-  isolation:isolate;
-}
-.nbcs-hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:-1;
-  background:linear-gradient(180deg,rgba(1,10,19,.27) 0%,rgba(1,10,19,.41) 52%,rgba(1,10,19,.48) 100%);
-  pointer-events:none;
 }
 .nbcs-hero-content{
   position:relative;
@@ -558,7 +549,7 @@ header.site-header{
 }
 .nbcs-hero-kicker{
   margin:0 0 24px;
-  color:#b5db7c;
+  color:#a8cce5;
   font-family:"Manrope","Helvetica Neue",Arial,sans-serif;
   font-size:11px;
   font-weight:500;
@@ -575,14 +566,14 @@ header.site-header{
   min-height:clamp(150px,18.5vw,225px);
   margin:0;
   padding:0;
-  color:#f2f5f7;
+  color:#c4ddf2;
   font-family:"Manrope","Avenir Next","Helvetica Neue",Arial,sans-serif;
   font-size:clamp(44px,5.1vw,76px);
   font-weight:400;
   line-height:1.16;
   letter-spacing:-.051em;
   text-align:center;
-  text-shadow:0 6px 30px rgba(0,0,0,.38);
+  text-shadow:0 2px 18px rgba(0,0,0,.3);
 }
 .nbcs-hero-phrase{
   grid-area:1/1;
@@ -590,6 +581,11 @@ header.site-header{
   width:100%;
   max-width:100%;
   text-align:center;
+  color:#c4ddf2;
+  background-image:linear-gradient(112deg,#ebf5fc 2%,#c0dbf0 51%,#8fbadd 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
   opacity:0;
   visibility:hidden;
   transform:translateY(12px);
@@ -604,13 +600,14 @@ header.site-header{
   transition:opacity .72s ease,transform .72s cubic-bezier(.22,1,.36,1),filter .72s ease,visibility 0s;
 }
 .nbcs-hero-highlight{
-  color:#b5db7c;
+  color:#a1c96a;
+  -webkit-text-fill-color:#a1c96a;
 }
 .nbcs-hero-description{
   width:100%;
   max-width:660px;
   margin:23px auto 30px;
-  color:#c6d4de;
+  color:#c6d7e5;
   font-family:"Manrope","Helvetica Neue",Arial,sans-serif;
   font-size:clamp(14px,1.3vw,17px);
   font-weight:400;
@@ -625,10 +622,10 @@ header.site-header{
   gap:17px;
   min-height:46px;
   padding:12px 22px;
-  border:1px solid rgba(181,219,124,.52);
+  border:1px solid rgba(165,205,233,.54);
   border-radius:2px;
-  background:rgba(4,23,33,.24);
-  color:#d8edb4;
+  background:transparent;
+  color:#dcecf8;
   font-family:"Manrope","Helvetica Neue",Arial,sans-serif;
   font-size:11px;
   font-weight:500;
@@ -640,16 +637,17 @@ header.site-header{
 }
 .nbcs-hero-cta-arrow{
   display:inline-block;
+  color:#a1c96a;
   font-size:17px;
   line-height:1;
 }
 .nbcs-hero-cta:hover{
-  background:rgba(181,219,124,.12);
-  border-color:rgba(181,219,124,.82);
-  color:#edf8d8;
+  background:rgba(144,186,219,.09);
+  border-color:rgba(177,213,239,.82);
+  color:#fff;
 }
 .nbcs-hero-cta:focus-visible{
-  outline:2px solid #b5db7c;
+  outline:2px solid #a9cde8;
   outline-offset:5px;
 }
 @media(prefers-reduced-motion:no-preference){
@@ -679,9 +677,6 @@ header.site-header{
     min-height:calc(100svh - 72px);
     padding:42px 6% 70px;
   }
-  .nbcs-hero::before{
-    background:linear-gradient(180deg,rgba(1,10,19,.33),rgba(1,10,19,.52));
-  }
   .nbcs-hero-kicker{margin-bottom:15px;font-size:9px;letter-spacing:.12em}
   .nbcs-hero-headline{
     min-height:clamp(144px,41vw,188px);
@@ -709,6 +704,7 @@ header.site-header{
   .nbcs-hero-cta-arrow{animation:none}
 }
 @media(forced-colors:active){
-  .nbcs-hero-phrase.is-active,.nbcs-hero-highlight{color:CanvasText}
+  .nbcs-hero-phrase{background:none;-webkit-text-fill-color:CanvasText}
+  .nbcs-hero-phrase.is-active,.nbcs-hero-highlight{color:CanvasText;-webkit-text-fill-color:CanvasText}
   .nbcs-hero-cta{background:ButtonFace;color:ButtonText;border-color:ButtonText}
 }
