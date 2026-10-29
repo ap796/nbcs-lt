@@ -528,7 +528,7 @@ header.site-header{
   .contact .email,.contact .copy-company,.contact .copy-account{transition:none}
 }
 
-/* NBCS hero — švelnus mėlynas tekstas, viena logotipo žalia raidė, video be papildomo tamsinimo. */
+/* NBCS hero — vientisa paslaugų žymoms identiška žalia #9BCC46. */
 .nbcs-hero{
   position:relative;
   display:flex;
@@ -566,7 +566,7 @@ header.site-header{
   min-height:clamp(150px,18.5vw,225px);
   margin:0;
   padding:0;
-  color:#c4ddf2;
+  color:#9bcc46;
   font-family:"Manrope","Avenir Next","Helvetica Neue",Arial,sans-serif;
   font-size:clamp(44px,5.1vw,76px);
   font-weight:400;
@@ -581,11 +581,7 @@ header.site-header{
   width:100%;
   max-width:100%;
   text-align:center;
-  color:#c4ddf2;
-  background-image:linear-gradient(112deg,#ebf5fc 2%,#c0dbf0 51%,#8fbadd 100%);
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
+  color:#9bcc46;
   opacity:0;
   visibility:hidden;
   transform:translateY(12px);
@@ -598,10 +594,6 @@ header.site-header{
   transform:translateY(0);
   filter:blur(0);
   transition:opacity .72s ease,transform .72s cubic-bezier(.22,1,.36,1),filter .72s ease,visibility 0s;
-}
-.nbcs-hero-highlight{
-  color:#a1c96a;
-  -webkit-text-fill-color:#a1c96a;
 }
 .nbcs-hero-description{
   width:100%;
@@ -704,7 +696,6 @@ header.site-header{
   .nbcs-hero-cta-arrow{animation:none}
 }
 @media(forced-colors:active){
-  .nbcs-hero-phrase{background:none;-webkit-text-fill-color:CanvasText}
-  .nbcs-hero-phrase.is-active,.nbcs-hero-highlight{color:CanvasText;-webkit-text-fill-color:CanvasText}
+  .nbcs-hero-phrase{color:CanvasText}
   .nbcs-hero-cta{background:ButtonFace;color:ButtonText;border-color:ButtonText}
 }
