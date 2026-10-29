@@ -38,7 +38,7 @@ window.addEventListener('hashchange',()=>{if(n.classList.contains('open'))setMen
 const video=document.getElementById('background-video');
 const videoToggle=document.getElementById('video-toggle');
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
-// Fonas paleidžiamas automatiškai; reduced-motion tebenaudojamas 3D judesiui.
+// Fono paleidimas lieka automatinis; reduced-motion riboja tik antraščių judesį.
 // Paleidimą gali riboti pačios naršyklės ar telefono energijos taupymo politika.
 let shouldPlay=true;
 // Autoplay leidžiamas mobiliosiose naršyklėse tik tyliai ir pačiame puslapyje.
@@ -83,33 +83,35 @@ document.addEventListener('keydown',retryBackgroundOnInteraction,{once:true});
 video.autoplay=true;
 playBackground();
 
-// Small, eased perspective shifts; static on touch and reduced-motion devices.
-const heroStage=document.querySelector('.hero-stage');
-const heroScene=document.querySelector('.hero-scene');
-const finePointer=window.matchMedia('(hover: hover) and (pointer: fine)');
-let tiltFrame=0,tiltX=0,tiltY=0,targetTiltX=0,targetTiltY=0,lastTiltTime=0;
-function tiltAllowed(){return finePointer.matches&&!reducedMotion.matches&&!document.hidden;}
-function renderTilt(now){
- const dt=lastTiltTime?Math.min(now-lastTiltTime,50):16.67;lastTiltTime=now;
- const ease=1-Math.exp(-dt/280);
- tiltX+=(targetTiltX-tiltX)*ease;tiltY+=(targetTiltY-tiltY)*ease;
- const settled=Math.abs(targetTiltX-tiltX)<.008&&Math.abs(targetTiltY-tiltY)<.008;
- if(settled){tiltX=targetTiltX;tiltY=targetTiltY;}
- heroScene.style.setProperty('--tilt-x',tiltX.toFixed(3)+'deg');
- heroScene.style.setProperty('--tilt-y',tiltY.toFixed(3)+'deg');
- tiltFrame=settled?0:requestAnimationFrame(renderTilt);
+// Santūri pagrindinių žinučių rotacija (jokio 3D ar agresyvių efektų).
+const heroPhrases=[...document.querySelectorAll('.nbcs-hero-phrase')];
+let currentHeroPhrase=0;
+let heroRotationTimer=null;
+function showHeroPhrase(nextIndex){
+  currentHeroPhrase=nextIndex;
+  heroPhrases.forEach((phrase,index)=>{
+    const active=index===nextIndex;
+    phrase.classList.toggle('is-active',active);
+    phrase.setAttribute('aria-hidden',String(!active));
+  });
 }
-function queueTilt(){if(!tiltFrame){lastTiltTime=0;tiltFrame=requestAnimationFrame(renderTilt);}}
-function resetTilt(immediate=false){targetTiltX=0;targetTiltY=0;if(immediate){cancelAnimationFrame(tiltFrame);tiltFrame=0;tiltX=0;tiltY=0;heroScene.style.removeProperty('--tilt-x');heroScene.style.removeProperty('--tilt-y');}else queueTilt();}
-heroStage.addEventListener('pointermove',event=>{if(!tiltAllowed()||event.pointerType==='touch')return;const rect=heroStage.getBoundingClientRect();const x=Math.max(-1,Math.min(1,(event.clientX-rect.left)/rect.width*2-1));const y=Math.max(-1,Math.min(1,(event.clientY-rect.top)/rect.height*2-1));targetTiltX=-y*2.5;targetTiltY=x*3.5;queueTilt();},{passive:true});
-heroStage.addEventListener('pointerleave',()=>resetTilt());
-heroStage.addEventListener('pointercancel',()=>resetTilt());
-heroStage.addEventListener('focusin',()=>resetTilt(true));
-window.addEventListener('blur',()=>resetTilt(true));
-window.addEventListener('scroll',()=>resetTilt(true),{passive:true});
-document.addEventListener('visibilitychange',()=>{if(document.hidden)resetTilt(true);});
-reducedMotion.addEventListener('change',()=>resetTilt(true));
-finePointer.addEventListener('change',()=>resetTilt(true));
+function syncHeroRotation(){
+  if(heroRotationTimer!==null){
+    window.clearInterval(heroRotationTimer);
+    heroRotationTimer=null;
+  }
+  if(reducedMotion.matches){
+    if(heroPhrases.length)showHeroPhrase(0);
+    return;
+  }
+  if(document.hidden||heroPhrases.length<2)return;
+  heroRotationTimer=window.setInterval(()=>{
+    showHeroPhrase((currentHeroPhrase+1)%heroPhrases.length);
+  },5600);
+}
+document.addEventListener('visibilitychange',syncHeroRotation);
+reducedMotion.addEventListener('change',syncHeroRotation);
+syncHeroRotation();
 
 const projectDetails=[...document.querySelectorAll('.project-detail')];
 const expandProjects=document.querySelector('.projects-expand');
