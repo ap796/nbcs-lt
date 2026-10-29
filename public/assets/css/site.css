@@ -37,3 +37,59 @@ body{background:#06111c;color:#eef4f8}.page-film{position:fixed;inset:0;z-index:
 @media(prefers-reduced-motion:reduce){
   .services .service{transition:none}
 }
+
+/* Subtiliai keičiama IT specializacija po pagrindiniu šūkiu. */
+.hero-expertise{
+  display:grid;
+  place-items:center;
+  width:100%;
+  max-width:880px;
+  min-height:32px;
+  margin:23px 0 0;
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:clamp(12px,1.15vw,15px);
+  font-weight:400;
+  letter-spacing:.045em;
+  line-height:1.6;
+  text-align:center;
+  color:#c8d5df;
+  transform:translateZ(62px);
+}
+.hero-expertise-line{grid-area:1 / 1;width:100%}
+.hero-expertise-line:not(:first-child){opacity:0}
+@media(prefers-reduced-motion:no-preference){
+  .hero-expertise-line{
+    opacity:0;
+    animation:hero-expertise-dissolve 18s linear infinite both;
+  }
+  .hero-expertise-line:nth-child(2){animation-delay:6s}
+  .hero-expertise-line:nth-child(3){animation-delay:12s}
+}
+@keyframes hero-expertise-dissolve{
+  0%{opacity:0}
+  3%,32%{opacity:1}
+  36%,100%{opacity:0}
+}
+@media(max-width:800px){
+  .hero-expertise{
+    max-width:550px;
+    min-height:42px;
+    margin-top:20px;
+    font-size:13px;
+    line-height:1.5;
+    letter-spacing:.02em;
+  }
+}
+@media(max-width:480px){
+  .hero-expertise{
+    max-width:320px;
+    margin-top:18px;
+    font-size:12px;
+    letter-spacing:.01em;
+  }
+  .hero-rule-bottom{margin-top:22px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-expertise-line:first-child{opacity:1}
+  .hero-expertise-line:not(:first-child){opacity:0}
+}
