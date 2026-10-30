@@ -8,7 +8,6 @@
   const mapContainer=mapPlaceholder?.parentElement||null;
   const mapSource=mapPlaceholder?.getAttribute('data-map-src')||'';
   const coordinates=[25.2697852,54.7185598]; // Šeškinės Sodų g. 12, Vilnius
-  const mapLink='https://www.openstreetmap.org/?mlat=54.7185598&mlon=25.2697852#map=17/54.7185598/25.2697852';
   let choice=null;
   let notice=null;
   let mapInstance=null;
