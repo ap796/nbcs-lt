@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>NBCS | Dark Monochrome žemėlapio peržiūra</title>
+<meta name="description" content="Laikina NBCS tamsaus nespalvoto žemėlapio bandymo peržiūra.">
+<style>
+:root{color-scheme:dark;font-family:Arial,"Helvetica Neue",sans-serif;background:#06121d;color:#e6eef2}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 65% 0,rgba(36,73,88,.28),transparent 65%),#06121d;min-height:100svh}
+header{max-width:1130px;margin:auto;padding:24px 26px;display:flex;justify-content:space-between;align-items:center;gap:14px;border-bottom:1px solid #b1cbda26}
+header img{width:137px;height:auto;display:block}
+a{color:#c1d7e4;text-decoration:none}a:hover{text-decoration:underline}
+header a{font-size:13px}
+main{max-width:1130px;margin:0 auto;padding:clamp(36px,6vw,80px) 26px 78px}
+.eyebrow{font-size:10px;letter-spacing:.2em;color:#9bcc46;text-transform:uppercase}
+h1{font-size:clamp(30px,5vw,54px);font-weight:400;letter-spacing:-.04em;line-height:1.1;max-width:800px;margin:16px 0 16px}
+.intro{max-width:710px;color:#aebfcb;line-height:1.8;font-size:15px}
+.panel{margin-top:29px;border:1px solid #a8c4d835;background:rgba(11,29,43,.45);padding:clamp(20px,3vw,30px)}
+label{font-size:13px;color:#d0e1ea;display:block;margin-bottom:9px}
+.control{display:flex;gap:10px;flex-wrap:wrap}
+input{flex:1 1 300px;min-height:48px;background:#071925;color:#e6eef2;border:1px solid #7695a88a;padding:12px 15px;border-radius:2px;font:inherit;min-width:0}
+button{min-height:48px;background:#9bcc46;color:#081722;font:600 13px Arial,sans-serif;border:0;padding:12px 20px;cursor:pointer;border-radius:2px}
+button:disabled{opacity:.55;cursor:wait}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid #bfd9ee;outline-offset:3px}
+.hint{font-size:12px;line-height:1.6;color:#a3b5c2;margin:12px 0 0}
+#status{min-height:20px;color:#d9c6a2}
+.map-frame{position:relative;margin-top:22px;border:1px solid #9db6c541;background:#0b1924;min-height:360px;overflow:hidden}
+#map{height:460px;width:100%}
+.map-empty{position:absolute;inset:0;display:grid;place-items:center;padding:25px;text-align:center;pointer-events:none;color:#9fb6c4;letter-spacing:.01em;background:repeating-linear-gradient(0deg,transparent 0 33px,#c3d9e609 33px 34px),repeating-linear-gradient(90deg,transparent 0 33px,#c3d9e609 33px 34px)}
+.map-empty[hidden]{display:none}
+.after{margin-top:18px;display:flex;gap:15px 24px;justify-content:space-between;flex-wrap:wrap;align-items:center;color:#a8b9c6;font-size:13px}
+.note{max-width:750px;font-size:13px;color:#aebfcc;line-height:1.75;margin-top:24px}
+@media(max-width:650px){header,main{padding-left:17px;padding-right:17px}header img{width:112px}header a{font-size:12px}#map{height:350px}.control button{width:100%}}
+</style>
+</head>
+<body>
+<header>
+<a href="/" aria-label="NBCS pradžia"><img src="/assets/nbcs-logo.png" alt="NBCS"></a>
+<a href="/#kontaktai">Grįžti į NBCS ↗</a>
+</header>
+<main>
+<div class="eyebrow">NBCS / ŽEMĖLAPIO BANDYMAS</div>
+<h1>Dark + Monochrome</h1>
+<p class="intro">Tikra juodai balta „Google Maps“ žemėlapio spalvų schema, ne CSS filtras. Tai laikina peržiūra prieš keičiant NBCS kontaktų skiltį.</p>
+<div class="panel">
+<label for="demo-key">Google Maps demonstracinis API raktas</label>
+<form id="demo-form" class="control">
+<input id="demo-key" type="password" autocomplete="off" spellcheck="false" placeholder="Įklijuokite savo Demo API raktą" required aria-describedby="key-help">
+<button id="show-map" type="submit">Parodyti žemėlapį</button>
+</form>
+<p id="key-help" class="hint">Raktas neišsaugomas svetainėje ar naršyklės saugykloje. Paspaudus mygtuką jis perduodamas tik „Google Maps“ API. Žemėlapis iki tol neįkeliamas.</p>
+<p id="status" role="status" aria-live="polite"></p>
+<div class="map-frame">
+<div id="map" role="region" aria-label="NBCS biuro vieta, tamsus nespalvotas Google žemėlapis"></div>
+<div class="map-empty" id="empty">NBCS · Šeškinės Sodų g. 12 · Vilnius</div>
+</div>
+<div class="after">
+<span>PERŽIŪRA / TAMSUS NESPALVOTAS ŽEMĖLAPIS</span>
+<a href="https://www.google.com/maps/search/?api=1&amp;query=%C5%A0e%C5%A1kin%C4%97s%20Sod%C5%B3%20g.%2012%2C%20Vilnius" target="_blank" rel="noopener noreferrer">Atidaryti „Google Maps“ ↗</a>
+</div>
+</div>
+<p class="note">Tai tik demonstracija, ne galutinė viešos svetainės integracija. „Google Maps Demo Key“ yra skirtas testavimui, turi kvotas ir nėra skirtas nuolatiniam naudojimui komercinėje svetainėje. Galutiniam variantui reikės įprasto apriboto API rakto ir galėsime naudoti oficialų „Google Cloud“ Dark + Monochrome stilių.</p>
+</main>
+<script>
+(function(){
+  'use strict';
+  var form=document.getElementById('demo-form');
+  var input=document.getElementById('demo-key');
+  var button=document.getElementById('show-map');
+  var status=document.getElementById('status');
+  var empty=document.getElementById('empty');
+  var mapElement=document.getElementById('map');
+  var started=false;
+  var styles=[
+    {elementType:'geometry',stylers:[{color:'#162027'}]},
+    {elementType:'labels.text.fill',stylers:[{color:'#a7b0b7'}]},
+    {elementType:'labels.text.stroke',stylers:[{color:'#19232a'}]},
+    {featureType:'administrative',elementType:'geometry.stroke',stylers:[{color:'#414a51'}]},
+    {featureType:'administrative.land_parcel',stylers:[{visibility:'off'}]},
+    {featureType:'poi',elementType:'geometry',stylers:[{color:'#202930'}]},
+    {featureType:'poi',elementType:'labels.icon',stylers:[{visibility:'off'}]},
+    {featureType:'poi.park',elementType:'geometry',stylers:[{color:'#242d32'}]},
+    {featureType:'road',elementType:'geometry',stylers:[{color:'#3a4349'}]},
+    {featureType:'road',elementType:'geometry.stroke',stylers:[{color:'#27323a'}]},
+    {featureType:'road',elementType:'labels.text.fill',stylers:[{color:'#c2c9cd'}]},
+    {featureType:'road.highway',elementType:'geometry',stylers:[{color:'#555e64'}]},
+    {featureType:'transit',elementType:'geometry',stylers:[{color:'#222c34'}]},
+    {featureType:'transit',elementType:'labels.icon',stylers:[{visibility:'off'}]},
+    {featureType:'water',elementType:'geometry',stylers:[{color:'#0b151c'}]},
+    {featureType:'water',elementType:'labels.text.fill',stylers:[{color:'#7d8991'}]}
+  ];
+  function reset(message){
+    status.textContent=message;
+    button.disabled=false;
+    started=false;
+  }
+  form.addEventListener('submit',function(event){
+    event.preventDefault();
+    if(started)return;
+    var key=input.value.trim();
+    if(!key)return;
+    started=true;
+    button.disabled=true;
+    status.textContent='Įkeliamas demonstracinis žemėlapis…';
+    // Google Maps is loaded only after the visitor supplies a key and clicks.
+    var callback='__nbcsDemoMapReady';
+    var script=document.createElement('script');
+    window[callback]=function(){
+      delete window[callback];
+      try{
+        var maps=window.google.maps;
+        var geocoder=new maps.Geocoder();
+        geocoder.geocode({address:'Šeškinės Sodų g. 12, 08343 Vilnius, Lietuva'},function(results,code){
+          if(code!=='OK'||!results||!results.length){
+            reset('Adreso žemėlapyje rasti nepavyko. Patikrinkite rakto ir API leidimus.');
+            return;
+          }
+          var location=results[0].geometry.location;
+          var map=new maps.Map(mapElement,{
+            center:location,
+            zoom:16,
+            styles:styles,
+            mapTypeId:'roadmap',
+            mapTypeControl:false,
+            streetViewControl:false,
+            gestureHandling:'cooperative'
+          });
+          new maps.Marker({
+            map:map,
+            position:location,
+            title:'NBCS – Šeškinės Sodų g. 12',
+            icon:{path:maps.SymbolPath.CIRCLE,scale:8,fillColor:'#9bcc46',fillOpacity:1,strokeColor:'#f0f4f5',strokeWeight:2}
+          });
+          empty.hidden=true;
+          status.textContent='Dark + Monochrome peržiūra įkelta.';
+          button.textContent='Žemėlapis įkeltas';
+        });
+      }catch(error){reset('Žemėlapio nepavyko inicijuoti. Patikrinkite API raktą.');}
+    };
+    script.async=true;
+    script.onerror=function(){
+      delete window[callback];
+      reset('„Google Maps“ nepasiekiamas arba raktas netinkamas.');
+    };
+    var params=new URLSearchParams({key:key,v:'weekly',language:'lt',callback:callback});
+    script.src='https://maps.googleapis.com/maps/api/js?'+params.toString();
+    document.head.appendChild(script);
+    input.value='';
+  });
+})();
+</script>
+</body>
+</html>
