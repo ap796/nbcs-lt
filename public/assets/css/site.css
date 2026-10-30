@@ -1066,7 +1066,7 @@ header.site-header.is-scrolled::before{opacity:1}
   .contact .location-route:hover{transform:none}
 }
 
-/* OpenFreeMap: dark vector map with real angled camera and optional 3D buildings.
+/* OpenFreeMap: colorful vector map with real angled camera and optional 3D buildings.
    Do not tint tiles or attribution with CSS filters. */
 .location-panel{perspective:none;overflow:hidden}
 .location-panel .location-map{
@@ -1091,8 +1091,8 @@ header.site-header.is-scrolled::before{opacity:1}
   position:relative;
   display:block;
   width:100%;
-  height:315px;
-  background:#0b1620;
+  height:365px;
+  background:#e7ece8;
 }
 .location-map .maplibregl-map{font-family:"Manrope","Helvetica Neue",Arial,sans-serif}
 .location-map .maplibregl-ctrl-group{
@@ -1118,5 +1118,5 @@ header.site-header.is-scrolled::before{opacity:1}
 .location-map .maplibregl-popup-content strong{color:#9bcc46}
 .location-map .maplibregl-popup-tip{border-top-color:#081e2d}
 @media(max-width:620px){
-  .location-map .location-openfreemap{height:255px}
+  .location-map .location-openfreemap{height:300px}
 }
