@@ -63,38 +63,6 @@
     mapContainer.replaceChildren(iframe);
   }
 
-  // NBCS lightened dark palette: change actual vector map paint, not CSS
-  // filters or overlays. Keep street names, attribution and interactions intact.
-  function tuneDarkMapStyle(map){
-    const layers=map.getStyle()?.layers||[];
-    const colors={
-      background:{'background-color':'#222c35'},
-      water:{'fill-color':'#21303c'},
-      building:{'fill-color':'#36434d','fill-outline-color':'#56616b'},
-      landcover_wood:{'fill-color':'#29372f'},
-      landuse_park:{'fill-color':'#293b33'},
-      landuse_residential:{'fill-color':'#26323b'}
-    };
-    for(const layer of layers){
-      const paint=colors[layer.id];
-      if(paint){
-        for(const [property,color] of Object.entries(paint)){
-          if(Object.prototype.hasOwnProperty.call(layer.paint||{},property)){
-            map.setPaintProperty(layer.id,property,color);
-          }
-        }
-      }
-      // The original roads are very dark against a nearly black background.
-      // Brighten them slightly to retain separation from the lighter land.
-      if(layer.type==='line'&&layer['source-layer']==='transportation'&&
-         /^highway_/.test(layer.id)&&!/_casing|_tunnel|_subtle/.test(layer.id)&&
-         Object.prototype.hasOwnProperty.call(layer.paint||{},'line-color')){
-        map.setPaintProperty(layer.id,'line-color',
-          /motorway|major|primary|trunk/.test(layer.id)?'#69757d':'#515c65');
-      }
-    }
-  }
-
   function addBuildings(map){
     // OpenFreeMap vector tiles may include rendered building heights.
     // Failure of the optional 3D layer must never hide the base map.
@@ -108,13 +76,13 @@
         type:'fill-extrusion',
         source:'openmaptiles',
         'source-layer':'building',
-        minzoom:15,
+        minzoom:14.3,
         filter:['has','render_height'],
         paint:{
-          'fill-extrusion-color':'#52616c',
+          'fill-extrusion-color':'#b8b6af',
           'fill-extrusion-height':['to-number',['get','render_height'],0],
           'fill-extrusion-base':['to-number',['get','render_min_height'],0],
-          'fill-extrusion-opacity':0.85
+          'fill-extrusion-opacity':0.78
         }
       },labelLayer);
     }catch(error){/* 3D neprivalomas, bazinis žemėlapis veikia toliau. */}
@@ -128,17 +96,17 @@
     }
     const element=document.createElement('div');
     element.className='location-openfreemap';
-    element.setAttribute('aria-label','NBCS biuro vieta tamsiame OpenFreeMap žemėlapyje');
+    element.setAttribute('aria-label','NBCS biuro vieta spalvotame 3D OpenFreeMap žemėlapyje');
     mapContainer.replaceChildren(element);
     let map;
     try{
       map=new maplibregl.Map({
         container:element,
-        style:'https://tiles.openfreemap.org/styles/dark',
+        style:'https://tiles.openfreemap.org/styles/bright',
         center:coordinates,
-        zoom:16.2,
-        pitch:42,
-        bearing:-12,
+        zoom:14.9,
+        pitch:49,
+        bearing:-16,
         antialias:true,
         attributionControl:true,
         cooperativeGestures:true
@@ -152,7 +120,6 @@
         .addTo(map);
       map.once('load',()=>{
         if(revision!==mapRevision||choice!=='maps')return;
-        tuneDarkMapStyle(map);
         addBuildings(map);
         // Accessible external destination when the marker is selected.
         marker.getElement().setAttribute('title','NBCS – Šeškinės Sodų g. 12');
