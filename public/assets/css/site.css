@@ -1067,10 +1067,12 @@ header.site-header.is-scrolled::before{opacity:1}
 }
 
 
-/* NBCS location map: floating 3D frame */
+/* NBCS map: subdued cartography and depth inside a level frame.
+   The iframe and Google attribution are not transformed; Google Maps camera
+   tilt / building extrusion need a Maps JavaScript API map ID. */
 .location-panel{
-  perspective:1200px;
-  overflow:visible;
+  perspective:none;
+  overflow:hidden;
 }
 .location-panel .location-header{
   position:relative;
@@ -1079,53 +1081,76 @@ header.site-header.is-scrolled::before{opacity:1}
 }
 .location-panel .location-map{
   position:relative;
-  z-index:1;
-  margin:0 23px 27px;
-  border:1px solid rgba(169,205,232,.32);
-  border-radius:3px;
+  isolation:isolate;
+  margin:0;
+  border:0;
+  border-top:1px solid rgba(169,205,232,.28);
+  border-radius:0;
   overflow:hidden;
   background:#0b2332;
-  transform:rotateX(7deg) rotateY(-3deg) translateY(-5px);
-  transform-origin:50% 0;
-  backface-visibility:hidden;
-  box-shadow:0 5px 0 #05111b,0 13px 0 rgba(4,12,20,.5),0 34px 58px rgba(0,0,0,.45),0 0 36px rgba(155,204,70,.06);
-  transition:transform .55s cubic-bezier(.2,.75,.2,1),box-shadow .55s ease;
+  transform:none;
+  box-shadow:none;
+  transition:none;
 }
-.location-panel .location-map::after{
+.location-panel .location-map iframe{
+  position:relative;
+  z-index:0;
+  display:block;
+  transform:none;
+  filter:none;
+}
+/* Depth comes from a soft inner shadow, not a rotated map container. */
+.location-panel .location-map::before{
   content:"";
   position:absolute;
   inset:0;
   z-index:1;
   pointer-events:none;
-  border:1px solid rgba(223,240,247,.12);
-  background:linear-gradient(130deg,rgba(213,236,248,.085),transparent 39%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.16);
+  box-shadow:inset 0 24px 40px rgba(2,13,23,.48),
+             inset 18px 0 38px rgba(2,13,23,.24),
+             inset -18px 0 38px rgba(2,13,23,.24);
+}
+/* Desaturate and tint the map view, keeping the bottom Google attribution
+   and its own controls unobscured and unaltered. */
+.location-panel .location-map::after{
+  content:"";
+  position:absolute;
+  inset:0 0 54px;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(5,25,40,.27),
+    rgba(6,25,39,.17) 65%,
+    rgba(6,25,39,0));
+  -webkit-backdrop-filter:saturate(.68) brightness(.83);
+  backdrop-filter:saturate(.68) brightness(.83);
+  transition:background .25s ease,backdrop-filter .25s ease;
 }
 .location-panel .location-map-placeholder{
+  position:relative;
+  z-index:2;
   background:
-    radial-gradient(ellipse at 50% 32%,rgba(155,204,70,.1),transparent 58%),
+    radial-gradient(ellipse at 50% 32%,rgba(155,204,70,.09),transparent 58%),
     linear-gradient(rgba(169,205,232,.055) 1px,transparent 1px),
     linear-gradient(90deg,rgba(169,205,232,.055) 1px,transparent 1px),
     linear-gradient(145deg,#102e41,#061724);
   background-size:auto,36px 36px,36px 36px,auto;
 }
+/* Let the detail become a little clearer during desktop interaction. */
 @media(hover:hover) and (pointer:fine){
-  .location-panel .location-map:hover,
-  .location-panel .location-map:focus-within{
-    transform:rotateX(0) rotateY(0) translateY(0);
-    box-shadow:0 3px 0 #05111b,0 16px 34px rgba(0,0,0,.34);
+  .location-panel .location-map:has(iframe):hover::after,
+  .location-panel .location-map:focus-within::after{
+    background:linear-gradient(180deg,
+      rgba(5,25,40,.18),
+      rgba(6,25,39,.08) 65%,
+      transparent);
+    -webkit-backdrop-filter:saturate(.83) brightness(.94);
+    backdrop-filter:saturate(.83) brightness(.94);
   }
 }
 @media(max-width:620px){
-  .location-panel .location-map{
-    margin:0 13px 18px;
-    transform:rotateX(4deg) rotateY(-1.5deg) translateY(-3px);
-    box-shadow:0 3px 0 #05111b,0 9px 0 rgba(4,12,20,.38),0 22px 34px rgba(0,0,0,.34);
-  }
+  .location-panel .location-map::after{bottom:58px}
 }
 @media(prefers-reduced-motion:reduce){
-  .location-panel .location-map{
-    transform:none;
-    transition:none;
-  }
+  .location-panel .location-map::after{transition:none}
 }
