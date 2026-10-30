@@ -182,7 +182,7 @@
       notice.setAttribute('aria-labelledby','cookie-notice-title');
       notice.innerHTML=`
         <h2 class="cookie-notice__title" id="cookie-notice-title">Jūsų privatumas NBCS svetainėje</h2>
-        <p class="cookie-notice__description">Privatumo pasirinkimui įsiminti naudojame būtinąją naršyklės saugyklą. Sutikę galėsite matyti „OpenFreeMap“ žemėlapį, kuriam bus įkeliami išoriniai žemėlapio duomenys ir „MapLibre“ biblioteka. Reklaminių ar lankomumo analizės sekimo įrankių nenaudojame. Plačiau – <a href="/privatumo-politika/">privatumo politikoje</a>.</p>
+        <p class="cookie-notice__description">Privatumo pasirinkimui įsiminti naudojame būtinąją naršyklės saugyklą. Sutikę galėsite matyti „OpenFreeMap“ žemėlapį. Tam įkeliami išoriniai žemėlapio duomenys ir „MapLibre“ biblioteka. Reklamos ir lankomumo analizės įrankių nenaudojame. Plačiau – <a href="/privatumo-politika/">privatumo politikoje</a>.</p>
         <div class="cookie-notice__actions">
           <button type="button" data-consent="essential">Tik būtini</button>
           <button type="button" data-consent="maps">Sutinku</button>
