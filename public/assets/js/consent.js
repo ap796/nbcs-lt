@@ -6,6 +6,13 @@
   const mapPlaceholder=document.querySelector('.location-map-placeholder');
   const mapContainer=mapPlaceholder?.parentElement||null;
   const mapSource=mapPlaceholder?.getAttribute('data-map-src')||'';
+  // Optional paid Google Maps JavaScript API credentials; empty values retain
+  // the existing consent-gated iframe until an owner configures Google Cloud.
+  const mapsApiKey=mapPlaceholder?.getAttribute('data-google-maps-api-key')?.trim()||'';
+  const googleMapId=mapPlaceholder?.getAttribute('data-google-map-id')?.trim()||'';
+  const hasCloudStyle=Boolean(mapsApiKey&&googleMapId);
+  let mapsApiPromise=null;
+  let styledMapPending=false;
   let choice=null;
   let notice=null;
 
@@ -20,19 +27,89 @@
     return null;
   }
 
+  function showEmbeddedMap(){
+    if(choice!=='maps'||mapContainer.querySelector('iframe'))return;
+    const iframe=document.createElement('iframe');
+    iframe.title='NBCS biuro vieta — Šeškinės Sodų g. 12, Vilnius';
+    iframe.src=mapSource;
+    iframe.loading='lazy';
+    iframe.referrerPolicy='no-referrer-when-downgrade';
+    iframe.allowFullscreen=true;
+    mapContainer.replaceChildren(iframe);
+  }
+
+  // Google Maps API loaded exclusively after visitor consent. Requires a
+  // published Dark + Monochrome Cloud Map Style linked to googleMapId.
+  function loadStyledMapsAPI(){
+    if(mapsApiPromise)return mapsApiPromise;
+    mapsApiPromise=new Promise((resolve,reject)=>{
+      const callback='__nbcsGoogleMapsLoaded';
+      const script=document.createElement('script');
+      window[callback]=()=>{
+        delete window[callback];
+        resolve(window.google?.maps);
+      };
+      script.async=true;
+      script.onerror=()=>{
+        delete window[callback];
+        reject(new Error('Google Maps API unavailable'));
+      };
+      const params=new URLSearchParams({
+        key:mapsApiKey,
+        v:'weekly',
+        loading:'async',
+        language:'lt',
+        callback
+      });
+      script.src='https://maps.googleapis.com/maps/api/js?'+params.toString();
+      document.head.appendChild(script);
+    });
+    return mapsApiPromise;
+  }
+
+  async function showStyledMap(){
+    await loadStyledMapsAPI();
+    // Geocoding uses the configured Maps JavaScript API to place the NBCS pin.
+    const response=await new window.google.maps.Geocoder().geocode({
+      address:'Šeškinės Sodų g. 12, 08343 Vilnius, Lietuva'
+    });
+    const location=response.results?.[0]?.geometry?.location;
+    if(!location)throw new Error('NBCS address not found');
+    const [{Map},{AdvancedMarkerElement}]=await Promise.all([
+      window.google.maps.importLibrary('maps'),
+      window.google.maps.importLibrary('marker')
+    ]);
+    if(choice!=='maps')return;
+    const element=document.createElement('div');
+    element.className='location-google-map';
+    element.setAttribute('aria-label','NBCS biuro vieta žemėlapyje');
+    mapContainer.replaceChildren(element);
+    const map=new Map(element,{
+      center:location,
+      zoom:16,
+      mapId:googleMapId,
+      colorScheme:'DARK',
+      mapTypeControl:false,
+      streetViewControl:false,
+      fullscreenControl:true,
+      gestureHandling:'cooperative'
+    });
+    new AdvancedMarkerElement({map,position:location,title:'NBCS – Šeškinės Sodų g. 12'});
+  }
+
   function updateMap(){
     if(!mapContainer||!mapPlaceholder||!mapSource)return;
     if(choice==='maps'){
-      if(mapContainer.querySelector('iframe'))return;
-      const iframe=document.createElement('iframe');
-      iframe.title='NBCS biuro vieta — Šeškinės Sodų g. 12, Vilnius';
-      iframe.src=mapSource;
-      iframe.loading='lazy';
-      iframe.referrerPolicy='no-referrer-when-downgrade';
-      iframe.allowFullscreen=true;
-      mapContainer.replaceChildren(iframe);
+      if(mapContainer.querySelector('iframe,.location-google-map'))return;
+      if(!hasCloudStyle){showEmbeddedMap();return;}
+      if(styledMapPending)return;
+      styledMapPending=true;
+      showStyledMap().catch(()=>{
+        // Keep the map working if API credentials, billing or geocoding fail.
+        if(choice==='maps')showEmbeddedMap();
+      }).finally(()=>{styledMapPending=false;});
     }else if(!mapContainer.contains(mapPlaceholder)){
-      // Atšaukus sutikimą žemėlapio elementas pašalinamas.
+      // Consent revoked: remove the map element, not third-party stored cookies.
       mapContainer.replaceChildren(mapPlaceholder);
     }
   }
