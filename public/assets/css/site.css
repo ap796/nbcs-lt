@@ -16,7 +16,8 @@ body{background:#06111c;color:#eef4f8}.page-film{position:fixed;inset:0;z-index:
   grid-template-columns:minmax(0,1.72fr) minmax(245px,.68fr);
   margin-top:18px;
   border:1px solid rgba(155,204,70,.27);
-  background:linear-gradient(115deg,rgba(9,31,46,.95),rgba(7,22,35,.94));
+  background:#07172473;
+  backdrop-filter:blur(6px);
   box-shadow:inset 3px 0 0 rgba(155,204,70,.66);
   overflow:hidden;
 }
