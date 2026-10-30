@@ -866,6 +866,21 @@ header.site-header.is-scrolled::before{opacity:1}
   .nbcs-hero-cta{background:ButtonFace;color:ButtonText;border-color:ButtonText}
 }
 
+
+/* Mobilus hero tekstas: GPU lengvas atskleidimas be blur, kuris kai kuriose
+   iOS / Android naršyklėse sutrikdo ar praleidžia keyframes animaciją. */
+@media(max-width:800px) and (prefers-reduced-motion:no-preference){
+  .nbcs-hero-phrase.is-active .nbcs-hero-line-content{
+    animation-name:nbcs-hero-line-reveal-mobile;
+    animation-duration:.82s;
+    animation-timing-function:cubic-bezier(.22,1,.36,1);
+  }
+}
+@keyframes nbcs-hero-line-reveal-mobile{
+  from{opacity:0;transform:translate3d(0,44%,0)}
+  to{opacity:1;transform:translate3d(0,0,0)}
+}
+
 /* NBCS — galutinis vizualinis suvienodinimas. Tik esamų skilčių selektoriai. */
 :root{
   --nbcs-polish-line:rgba(170,201,219,.20);
