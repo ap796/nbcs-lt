@@ -154,7 +154,7 @@ function companyText(){
     lines.push(row.querySelector('dt').textContent.trim()+': '+row.querySelector('.company-code-value').textContent.trim());
   });
   companyDetails.querySelectorAll('.bank-accounts>div').forEach(row=>{
-    lines.push(row.querySelector('dt').textContent.trim()+'; Nr: '+row.querySelector('.bank-account-value').textContent.trim());
+    lines.push(row.querySelector('dt').textContent.trim()+'; sąskaitos nr. '+row.querySelector('.bank-account-value').textContent.trim());
   });
   return lines.join('\n');
 }
@@ -178,7 +178,7 @@ async function copyContactText(text){
   }catch(error){return false;}
 }
 function copyFeedback(success,message){
-  copyStatus.textContent=success?message:'Automatiškai nukopijuoti nepavyko. Pažymėtas tekstas paruoštas kopijavimui (Ctrl+C arba ⌘C).';
+  copyStatus.textContent=success?message:'Automatiškai nukopijuoti nepavyko. Pažymėtą tekstą galite nukopijuoti rankiniu būdu (Ctrl+C arba ⌘C).';
 }
 copyCompany.addEventListener('click',async()=>{
   if(copyCompany.disabled)return;
