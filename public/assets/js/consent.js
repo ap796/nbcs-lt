@@ -7,7 +7,7 @@
   const mapPlaceholder=document.querySelector('.location-map-placeholder');
   const mapContainer=mapPlaceholder?.parentElement||null;
   const mapSource=mapPlaceholder?.getAttribute('data-map-src')||'';
-  const coordinates=[25.2697852,54.7185598]; // Šeškinės Sodų g. 12, Vilnius
+  const coordinates=[25.270130,54.717958]; // Pietrytinė Šeškinės Sodų g. 12 komplekso dalis
   let choice=null;
   let notice=null;
   let mapInstance=null;
