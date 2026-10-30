@@ -63,10 +63,17 @@ function syncVideoControl(){
 }
 function playBackground(){
  if(!shouldPlay||document.hidden)return;
- video.muted=true;
- const attempt=video.play();
- if(attempt&&typeof attempt.then==='function')attempt.then(syncVideoControl).catch(syncVideoControl);
- else syncVideoControl();
+ // Kai kuriose mobiliosiose naršyklėse play() ne tik atmeta Promise,
+ // bet ir išmeta klaidą sinchroniškai. Tai negali sustabdyti hero antraščių JS.
+ try{
+  video.muted=true;
+  const attempt=video.play();
+  if(attempt&&typeof attempt.then==='function')attempt.then(syncVideoControl).catch(syncVideoControl);
+  else syncVideoControl();
+ }catch(error){
+  // Video plakatas išlieka matomas, o mygtukas leidžia pabandyti paleisti rankiniu būdu.
+  syncVideoControl();
+ }
 }
 videoToggle.addEventListener('click',()=>{
  shouldPlay=video.paused;
@@ -119,7 +126,16 @@ function syncHeroRotation(){
   },5600);
 }
 document.addEventListener('visibilitychange',syncHeroRotation);
-reducedMotion.addEventListener('change',syncHeroRotation);
+// Safari po grįžimo iš kitos programėlės ar skirtuko gali neatkurti laikmačio
+// vien pagal visibilitychange, todėl jį atnaujiname ir per pageshow / focus.
+window.addEventListener('pageshow',syncHeroRotation);
+window.addEventListener('focus',syncHeroRotation);
+// Senesnėje iOS Safari MediaQueryList neturi addEventListener.
+if(typeof reducedMotion.addEventListener==='function'){
+  reducedMotion.addEventListener('change',syncHeroRotation);
+}else if(typeof reducedMotion.addListener==='function'){
+  reducedMotion.addListener(syncHeroRotation);
+}
 syncHeroRotation();
 
 const projectDetails=[...document.querySelectorAll('.project-detail')];
