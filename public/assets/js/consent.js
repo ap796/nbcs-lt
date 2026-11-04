@@ -197,7 +197,7 @@
         center:coordinates,
         zoom:15.9,
         pitch:49,
-        bearing:-16,
+        bearing:180,
         antialias:true,
         attributionControl:true,
         cooperativeGestures:true
