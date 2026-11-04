@@ -1066,7 +1066,7 @@ header.site-header.is-scrolled::before{opacity:1}
   .contact .location-route:hover{transform:none}
 }
 
-/* OpenFreeMap: colorful vector map with real angled camera and optional 3D buildings.
+/* OpenFreeMap: NBCS slate-blue monochrome vector map with 3D buildings.
    Do not tint tiles or attribution with CSS filters. */
 .location-panel{perspective:none;overflow:hidden}
 .location-panel .location-map{
@@ -1092,7 +1092,7 @@ header.site-header.is-scrolled::before{opacity:1}
   display:block;
   width:100%;
   height:365px;
-  background:#e7ece8;
+  background:#566f80;
 }
 .location-map .maplibregl-map{font-family:"Manrope","Helvetica Neue",Arial,sans-serif}
 .location-map .maplibregl-ctrl-group{
