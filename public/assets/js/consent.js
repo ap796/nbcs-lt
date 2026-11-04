@@ -195,7 +195,7 @@
         container:element,
         style:'https://tiles.openfreemap.org/styles/bright',
         center:coordinates,
-        zoom:14.9,
+        zoom:14.4,
         pitch:60,
         bearing:180,
         antialias:true,
