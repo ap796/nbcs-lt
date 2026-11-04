@@ -835,7 +835,7 @@ header.site-header.is-scrolled::before{opacity:1}
     min-height:calc(100svh - 72px);
     padding:42px 6% 70px;
   }
-  .nbcs-hero-kicker{margin-bottom:15px;font-size:9px;letter-spacing:.12em}
+  .nbcs-hero-kicker{margin-bottom:15px;font-size:11px;letter-spacing:.12em}
   .nbcs-hero-headline{
     min-height:clamp(144px,41vw,188px);
     font-size:clamp(31px,8vw,42px);
