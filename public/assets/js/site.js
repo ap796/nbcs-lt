@@ -158,22 +158,22 @@ function companyText(){
   });
   return lines.join('\n');
 }
-async function copyContactText(text){
-  copyManual.hidden=true;
+async function copyContactText(text,manualField=copyManual){
+  manualField.hidden=true;
   try{
     if(navigator.clipboard?.writeText){
       await navigator.clipboard.writeText(text);
       return true;
     }
   }catch(error){/* Leidimai ar naršyklės politika gali riboti kopijavimą. */}
-  copyManual.value=text;
-  copyManual.hidden=false;
-  copyManual.focus({preventScroll:true});
-  copyManual.select();
-  copyManual.setSelectionRange(0,text.length);
+  manualField.value=text;
+  manualField.hidden=false;
+  manualField.focus({preventScroll:true});
+  manualField.select();
+  manualField.setSelectionRange(0,text.length);
   try{
     const success=document.execCommand('copy');
-    if(success)copyManual.hidden=true;
+    if(success)manualField.hidden=true;
     return success;
   }catch(error){return false;}
 }
@@ -193,7 +193,7 @@ copyCompany.addEventListener('click',async()=>{
     window.setTimeout(()=>{copyCompany.innerHTML=originalHTML;},2200);
   }
 });
-document.querySelectorAll('.copy-code').forEach(button=>{
+document.querySelectorAll('.company-codes .copy-code').forEach(button=>{
   button.addEventListener('click',async()=>{
     if(button.disabled)return;
     button.disabled=true;
@@ -209,4 +209,24 @@ document.querySelectorAll('.copy-code').forEach(button=>{
       window.setTimeout(()=>button.classList.remove('is-copied'),1800);
     }
   });
+});
+
+const copyAddress=document.querySelector('.copy-address');
+const copyAddressStatus=document.querySelector('.copy-address-status');
+const copyAddressManual=document.querySelector('.copy-address-manual');
+copyAddress.addEventListener('click',async()=>{
+  if(copyAddress.disabled)return;
+  copyAddress.disabled=true;
+  copyAddressStatus.textContent='';
+  const address=[...document.querySelectorAll('.contact-address-value span')]
+    .map(part=>part.textContent.trim()).join(', ');
+  const copied=await copyContactText(address,copyAddressManual);
+  copyAddress.disabled=false;
+  copyAddressStatus.textContent=copied
+    ?'Adresas nukopijuotas.'
+    :'Automatiškai nukopijuoti nepavyko. Pažymėtą adresą galite nukopijuoti rankiniu būdu (Ctrl+C arba ⌘C).';
+  if(copied){
+    copyAddress.classList.add('is-copied');
+    window.setTimeout(()=>copyAddress.classList.remove('is-copied'),1800);
+  }
 });
