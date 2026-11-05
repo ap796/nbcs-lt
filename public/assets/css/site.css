@@ -1342,3 +1342,25 @@ header.site-header.is-scrolled::before{opacity:1}
     transform:none!important;
   }
 }
+
+/* Kontaktų adreso kopijavimas – toks pat mažas mygtukas kaip rekvizituose. */
+.contact .contact-address-copy{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  min-width:0;
+}
+.contact .contact-address-value{min-width:0}
+.contact .copy-address{align-self:center}
+.contact .copy-address-status{
+  margin:7px 0 0;
+  color:#e7d2a9;
+  font-size:12px;
+  line-height:1.5;
+}
+.contact .copy-address-status:empty{display:none}
+.contact .copy-address-manual{
+  min-height:72px;
+  margin-top:8px;
+}
