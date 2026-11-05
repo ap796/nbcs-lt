@@ -68,7 +68,7 @@
   ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/css/site.css?v=50">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/css/site.css?v=51">
 <link rel="stylesheet" href="/assets/css/consent.css?v=1">
 </head>
 <body>
@@ -488,7 +488,12 @@
 <span class="contact-detail-index" aria-hidden="true">02</span>
 <div>
 <small>ADRESAS</small>
-<p>Šeškinės Sodų g. 12<br>08343 Vilnius, Lietuva</p>
+<div class="contact-address-copy">
+<p class="contact-address-value"><span>Šeškinės Sodų g. 12</span><br><span>08343 Vilnius, Lietuva</span></p>
+<button type="button" class="copy-code copy-address" aria-label="Kopijuoti adresą" title="Kopijuoti adresą"><span aria-hidden="true">⧉</span></button>
+</div>
+<p class="copy-address-status" role="status" aria-live="polite"></p>
+<textarea class="copy-manual copy-address-manual" readonly hidden aria-label="Adresas kopijavimui rankiniu būdu"></textarea>
 </div>
 </div>
 </div>
@@ -547,7 +552,7 @@
 <footer><a class="logo" href="#"><img src="assets/nbcs-logo.png" alt="NBCS" width="2048" height="454"></a>
 <div class="footer-legal"><span>© 2026 NBCS. Visos teisės saugomos.</span><a href="/privatumo-politika/">Privatumo politika</a><button class="cookie-settings-trigger" type="button">Slapukų nustatymai</button>
 </div><a href="#">Į pradžią ↑</a>
-</footer><script src="/assets/js/consent.js?v=13" defer></script><script src="/assets/js/site.js?v=13" defer></script>
+</footer><script src="/assets/js/consent.js?v=13" defer></script><script src="/assets/js/site.js?v=14" defer></script>
 </body>
 </html>
 
